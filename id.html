@@ -1,0 +1,633 @@
+<!doctype html>
+<html lang="id" data-page-lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/assets/css/site.css">
+<style>
+:root{--teal:#0e494a;--teal2:#1e3a3a;--gold:#b38d40;--gold2:#e9c176;--cream:#fbf9f6;--ink:#1b1c1a;--mute:#5b6463;--line:#e4e2df;--wa:#25d366}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Plus Jakarta Sans','Plus Jakarta Sans Fallback',system-ui,sans-serif;color:var(--ink);background:var(--cream);line-height:1.55}
+h1,h2,h3{font-family:'Playfair Display','Playfair Display Fallback',Georgia,serif;font-weight:600;line-height:1.12;letter-spacing:-.01em}
+a{color:inherit}
+img{display:block;max-width:100%}
+.wrap{max-width:1200px;margin:0 auto;padding:0 20px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border:0;border-radius:14px;padding:15px 26px;font:700 16px 'Plus Jakarta Sans','Plus Jakarta Sans Fallback',sans-serif;text-decoration:none;cursor:pointer;transition:transform .15s,box-shadow .15s,background .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn-gold{background:var(--gold);color:#fff;box-shadow:0 8px 22px #b38d4055}.btn-gold:hover{background:#9c7a33}
+.btn-wa{background:var(--wa);color:#073b1d;box-shadow:0 8px 22px #25d36655}
+.btn-line{background:transparent;color:#fff;border:2px solid #ffffffaa}.btn-line:hover{background:#ffffff1f}
+.btn-dark{background:var(--teal);color:#fff}
+/* ---------- hero ---------- */
+.hero{position:relative;min-height:640px;display:flex;align-items:center;color:#fff;overflow:hidden;background:#0a2b2c}
+.hero img.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%}
+.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,#0a2b2cf0 0%,#0e494acc 38%,#0e494a55 70%,#0e494a22 100%),linear-gradient(0deg,#0a2b2ccc 0%,transparent 40%)}
+.hero .in{position:relative;z-index:2;padding:80px 0 170px;max-width:760px}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-weight:700;font-size:13px;letter-spacing:.28em;color:var(--gold2);margin-bottom:22px}
+.eyebrow:before{content:"";width:46px;height:2px;background:var(--gold2)}
+.hero h1{font-size:clamp(40px,6.4vw,76px);margin-bottom:22px}
+.hero h1 em{color:var(--gold2);font-style:italic;font-weight:500}
+.hero p.lead{font-size:clamp(17px,2vw,21px);max-width:620px;color:#e8f0f0;margin-bottom:34px}
+.hero .cta{display:flex;gap:14px;flex-wrap:wrap}
+.heroqr{float:right;width:104px;margin:4px 0 8px 12px;background:#fff;border-radius:12px;padding:8px;text-align:center;color:var(--teal);box-shadow:0 8px 24px #0a2b2c66}
+.heroqr img{display:block;width:82px;height:82px;margin:0 auto}.heroqr b{display:block;font-size:10px;line-height:1.25;margin-top:4px}.heroqr small{display:none}
+.hero .cta{clear:both;align-items:center}
+.herowa{display:flex;align-items:center;gap:10px;background:#fff;border-radius:14px;padding:6px 14px 6px 6px;color:var(--teal);box-shadow:0 8px 24px #0a2b2c66;text-decoration:none}
+.herowa img{display:block;width:123px;height:123px}.herowa b{display:block;width:112px;font-size:13px;line-height:1.3}
+/* tablet and desktop: the two QR codes are a matching pair, one above the other, to the right of the text (phones keep the layout above) */
+@media(min-width:641px){.hero .in{padding-right:184px}.heroqr,.herowa{position:absolute;float:none;right:0;width:160px;height:190px;margin:0;padding:12px;border-radius:16px;display:flex;flex-direction:column;align-items:center;gap:0;text-align:center;box-shadow:0 10px 30px #0a2b2c66}.heroqr{top:calc(50% - 240px)}.herowa{top:calc(50% - 36px)}.heroqr img,.herowa img{width:123px;height:123px;margin:0}.heroqr b,.herowa b{width:auto;font-size:12.5px;line-height:1.3;margin-top:8px}}
+@media(min-width:1200px){.hero .in{padding-right:0}.heroqr,.herowa{right:auto;left:calc(100% + (100vw - 760px)/4 - 80px)}}
+/* Explore (owner 6 Nov: seen at first sight): three photo tiles - a row under the buttons; on wide screens a column in the empty left side of the picture, mirroring the QR codes */
+.hexp{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:26px;max-width:560px}
+.hexp-h{grid-column:1/-1;font-weight:700;font-size:12px;letter-spacing:.28em;color:var(--gold2)}
+.hx{position:relative;display:block;border-radius:14px;overflow:hidden;min-height:96px;color:#fff;text-decoration:none;border:1px solid #ffffff40;box-shadow:0 10px 26px #0a2b2c66;background:#0e494a}
+.hx img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .35s}
+.hx:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#06191ae6 0%,#06191a66 55%,#06191a14 100%)}
+.hx span{position:absolute;left:12px;right:12px;bottom:10px;z-index:1}
+.hx b{display:block;font-size:15px;line-height:1.2}.hx b:after{content:" →";color:var(--gold2)}
+.hx small{display:block;font-size:11.5px;color:#e3efee;line-height:1.3;margin-top:2px}
+.hx:hover,.hx:focus-visible{border-color:var(--gold2)}.hx:hover img,.hx:focus-visible img{transform:scale(1.06)}
+@media(max-width:640px){.hexp{gap:8px;margin-top:22px}.hx{min-height:84px}.hx span{left:8px;right:8px;bottom:8px}.hx b{font-size:13px}.hx small{display:none}}
+@media(min-width:1200px){.hexp{--tw:min(220px,calc((100vw - 760px)/2 - 40px));position:absolute;top:calc(50% - 240px);right:calc(100% + (100vw - 760px)/4 - var(--tw)/2);width:var(--tw);margin:0;grid-template-columns:1fr;gap:12px}.hx{min-height:112px}}
+.langpill{position:absolute;top:18px;right:20px;z-index:5;display:flex;background:#ffffff26;backdrop-filter:blur(8px);border-radius:999px;padding:4px;border:1px solid #ffffff55}
+.langpill button{border:0;background:transparent;color:#fff;font:700 13px 'Plus Jakarta Sans','Plus Jakarta Sans Fallback';padding:7px 14px;border-radius:999px;cursor:pointer}
+.langpill button.on{background:#fff;color:var(--teal)}
+/* ---------- search card ---------- */
+.searchwrap{position:relative;z-index:10;margin-top:-118px}
+.scard{background:#fff;border-radius:26px;box-shadow:0 30px 70px #0a2b2c40,0 4px 14px #0a2b2c1a;padding:26px 26px 28px}
+/* one bar: Where | Check-in | Check-out | Guests | button (stacks on phones) */
+.fields{display:grid;grid-template-columns:1.7fr 1fr 1fr 1.15fr auto;align-items:stretch;border:1.5px solid var(--line);border-radius:18px;padding:6px;background:#fff}
+.f{display:flex;flex-direction:column;justify-content:center;gap:2px;min-width:0;padding:8px 16px;border-right:1px solid var(--line);border-radius:12px}
+.f.gst{border-right:0}
+.f:focus-within{background:#f6f3ee}
+.f>label{font:700 13px 'Plus Jakarta Sans','Plus Jakarta Sans Fallback';color:var(--ink)}
+.f>input,.gbtn{width:100%;height:28px;border:0;padding:0;font:500 15px 'Plus Jakarta Sans','Plus Jakarta Sans Fallback';color:var(--ink);background:transparent;outline:0}
+.f>input::placeholder{color:#8b9494}
+.gbtn{text-align:left;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.f.gst{position:relative}
+.gpop{position:absolute;right:0;top:calc(100% + 12px);z-index:60;width:270px;background:#fff;border-radius:16px;box-shadow:0 22px 60px #0a2b2c38,0 3px 10px #0a2b2c1f;padding:14px;display:grid;gap:10px}
+.gpop[hidden]{display:none}
+.gpop label{display:flex;justify-content:space-between;align-items:center;gap:10px;font:600 15px 'Plus Jakarta Sans','Plus Jakarta Sans Fallback';color:var(--ink)}
+.gpop select{width:140px;height:42px;border:1.5px solid var(--line);border-radius:10px;padding:0 8px;font:500 14px 'Plus Jakarta Sans','Plus Jakarta Sans Fallback';background:#fff}
+.gdone{height:42px;border:0;border-radius:10px;background:var(--teal);color:#fff;font:700 15px 'Plus Jakarta Sans','Plus Jakarta Sans Fallback';cursor:pointer}
+.f.dst{position:relative}
+.ac{position:absolute;left:0;top:calc(100% + 12px);z-index:60;width:min(600px,calc(100vw - 40px));background:#fff;border-radius:18px;box-shadow:0 22px 60px #0a2b2c38,0 3px 10px #0a2b2c1f;overflow-x:hidden;overflow-y:auto;max-height:min(68vh,500px)}
+.ac .hd{background:#f2f0ec;padding:13px 20px;font:800 14px 'Plus Jakarta Sans','Plus Jakarta Sans Fallback';color:var(--ink)}
+.ac .it{display:flex;gap:16px;align-items:center;padding:12px 20px;cursor:pointer}
+.ac .it:hover,.ac .it.on{background:#f6f3ee}
+.ac .ic{width:30px;text-align:center;font-size:21px;flex:none}
+.ac .t{font:600 16px 'Plus Jakarta Sans','Plus Jakarta Sans Fallback';color:var(--ink);line-height:1.25}.ac .t b{font-weight:800;color:var(--teal2)}
+.ac .s{font:500 13px 'Plus Jakarta Sans','Plus Jakarta Sans Fallback';color:#6b7676;margin-top:2px}.ac .s .st{color:#c9a24a;letter-spacing:1px}
+.ac .em{padding:16px 20px;color:#6b7676;font:500 14px 'Plus Jakarta Sans','Plus Jakarta Sans Fallback'}
+.pickinfo{font:700 13px 'Plus Jakarta Sans','Plus Jakarta Sans Fallback';margin-top:7px}.pickinfo a{color:#9a7630;text-decoration:none}.pickinfo a:hover{text-decoration:underline}
+.searchbtn{min-height:56px;padding:0 24px;white-space:nowrap;border-radius:14px;margin-left:6px}
+.hint{margin-top:14px;font-size:14px;color:var(--mute)}
+.hint b{color:var(--teal2)}
+#nights{font-weight:700;color:var(--gold)}
+/* ---------- value strip ---------- */
+.strip{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin:34px 0 8px}
+.strip div{display:flex;gap:14px;align-items:flex-start}
+.strip .ic{flex:none;width:46px;height:46px;border-radius:14px;background:#e9f1f0;color:var(--teal);display:grid;place-items:center;font-size:22px}
+.strip b{display:block;font-size:15px;color:var(--teal2)}
+.strip span.t{font-size:13.5px;color:var(--mute)}
+/* ---------- sections ---------- */
+section.s{padding:84px 0}
+.head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:34px;flex-wrap:wrap}
+.head h2{font-size:clamp(30px,4vw,46px);color:var(--teal2)}
+.head p{color:var(--mute);max-width:560px;margin-top:10px}
+.kicker{font:800 12px 'Plus Jakarta Sans','Plus Jakarta Sans Fallback';letter-spacing:.26em;color:var(--gold);text-transform:uppercase;margin-bottom:10px}
+/* Google map under the search box (Maps Embed API - free; prices are never shown) */
+.hmap{margin-top:18px;border-top:1px solid #e6ece9;padding-top:16px}
+.hmap .gh{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:10px}
+.hmap .gh b{font:700 17px 'Plus Jakarta Sans','Plus Jakarta Sans Fallback',sans-serif;color:#0d3b3c}
+.hmap .gh a{font-weight:700;color:#0d6b5f;text-decoration:none;font-size:14px}
+.hmap iframe{width:100%;height:420px;border:0;border-radius:16px;display:block;background:#eef3f1}
+.hmap .gn{font-size:12.5px;color:#6b7a77;margin-top:8px}
+@media(max-width:640px){.hmap iframe{height:320px}}
+/* destinations */
+.dest{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.d{position:relative;border:0;text-align:left;border-radius:22px;overflow:hidden;min-height:250px;color:#fff;cursor:pointer;display:flex;align-items:flex-end;padding:20px;background:linear-gradient(150deg,var(--teal),#143f40);transition:transform .2s,box-shadow .2s;font-family:inherit}
+.d:hover{transform:translateY(-6px);box-shadow:0 22px 44px #0a2b2c40}
+.d img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.d:hover img{transform:scale(1.06)}
+.d:before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(0deg,#0a2b2ce6 0%,#0a2b2c40 55%,transparent 100%)}
+.d .tx{position:relative;z-index:2}
+.d h3{font-size:28px}
+.d small{display:block;font-size:13px;color:#dbe7e7;margin-top:2px}
+.d.big{grid-column:span 2;min-height:330px}
+.d.plain{background:linear-gradient(150deg,var(--teal) 0%,#1c5a58 60%,#2b6d63 100%)}
+.d.plain.g2{background:linear-gradient(150deg,#2a3f3e,#0e494a 70%)}
+.d.plain.g3{background:linear-gradient(150deg,#7a5f27,#b38d40 80%)}
+.d .pin{position:absolute;top:16px;left:18px;z-index:2;background:#ffffff26;border:1px solid #ffffff55;backdrop-filter:blur(6px);font-size:12px;font-weight:700;padding:5px 11px;border-radius:999px}
+/* offers banner */
+.banner{border-radius:30px;overflow:hidden;position:relative;background:linear-gradient(120deg,#0a2b2c,#0e494a 55%,#1c6560);color:#fff;padding:54px 56px;display:grid;grid-template-columns:1.6fr 1fr;gap:30px;align-items:center}
+.banner:before{content:"";position:absolute;right:-90px;top:-90px;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,#b38d4090,transparent 70%)}
+.banner h2{font-size:clamp(30px,4vw,48px);margin-bottom:14px}
+.banner h2 em{color:var(--gold2)}
+.banner p{color:#d6e4e3;max-width:560px}
+.banner .acts{position:relative;display:flex;flex-direction:column;gap:12px}
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.step{background:#fff;border-radius:24px;padding:34px 30px;box-shadow:0 10px 30px #0a2b2c12;position:relative;overflow:hidden}
+.step .n{font:600 64px 'Playfair Display','Playfair Display Fallback';color:#e9dcc0;line-height:1;margin-bottom:12px}
+.step h3{font-size:24px;color:var(--teal2);margin-bottom:8px}
+.step p{color:var(--mute)}
+/* why */
+.why{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.w{padding:28px 24px;border-radius:22px;background:#fff;border:1px solid var(--line)}
+.w .ic{width:54px;height:54px;border-radius:16px;background:linear-gradient(140deg,var(--teal),#1c6560);color:#fff;display:grid;place-items:center;font-size:26px;margin-bottom:16px}
+.w h3{font:700 18px 'Plus Jakarta Sans','Plus Jakarta Sans Fallback';margin-bottom:6px;color:var(--teal2)}
+.w p{font-size:15px;color:var(--mute)}
+/* faq */
+.faq{max-width:860px;margin:0 auto}
+details{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px 24px;margin-bottom:12px}
+summary{cursor:pointer;font-weight:700;font-size:17px;color:var(--teal2);list-style:none;display:flex;justify-content:space-between;gap:14px}
+summary::after{content:"+";font-size:24px;color:var(--gold);line-height:1}
+details[open] summary::after{content:"–"}
+details p{margin-top:12px;color:var(--mute)}
+/* final cta + footer */
+.final{background:var(--teal2);color:#fff;text-align:center;padding:84px 20px}
+.final h2{font-size:clamp(32px,5vw,56px);margin-bottom:14px}
+.final p{color:#cfe0df;max-width:640px;margin:0 auto 28px}
+footer{background:#0a2b2c;color:#c9d9d8;padding:60px 0 84px}
+footer .cols{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:36px}
+footer .logo{display:inline-block;background:#fff;border-radius:16px;padding:10px 16px;margin-bottom:16px}
+footer .logo img{height:48px;width:auto}
+footer h4{font:800 12px 'Plus Jakarta Sans','Plus Jakarta Sans Fallback';letter-spacing:.2em;text-transform:uppercase;color:var(--gold2);margin-bottom:14px}
+footer a{display:block;text-decoration:none;padding:5px 0;color:#c9d9d8}
+footer a:hover{color:#fff}
+footer .soc{display:flex;gap:10px;margin-top:6px}
+footer .soc a{display:grid;place-items:center;width:42px;height:42px;border-radius:12px;background:#ffffff14;font-weight:800;padding:0}
+footer .soc a:hover{background:var(--gold)}
+footer .legal{border-top:1px solid #ffffff22;margin-top:40px;padding-top:20px;font-size:13px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.floatwa{position:fixed;right:18px;bottom:18px;z-index:90;display:flex;align-items:center;gap:10px;background:var(--wa);color:#073b1d;font:800 15px 'Plus Jakarta Sans','Plus Jakarta Sans Fallback';padding:14px 20px;border-radius:999px;text-decoration:none;box-shadow:0 12px 30px #25d36666}
+/* ---------- phone ---------- */
+@media(max-width:1020px){.fields{grid-template-columns:1fr 1fr}.f{border-right:0;border-bottom:1px solid var(--line);border-radius:0}.f.dst,.f.gst{grid-column:1/-1}.f.gst{border-bottom:0}.searchbtn{grid-column:1/-1;margin:6px 0 0}.gpop{left:0;right:auto;width:min(300px,100%)}.dest{grid-template-columns:repeat(2,1fr)}.d.big{grid-column:span 2}.strip,.why{grid-template-columns:repeat(2,1fr)}.banner{grid-template-columns:1fr;padding:40px 30px}footer .cols{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.hero{min-height:560px}.hero .in{padding:70px 0 150px}.scard{padding:20px 16px}.steps{grid-template-columns:1fr}.strip,.why{grid-template-columns:1fr}.dest{grid-template-columns:1fr 1fr;gap:12px}.d{min-height:190px;padding:14px}.d h3{font-size:22px}.d.big{min-height:230px}.fields{grid-template-columns:1fr}.f.dst,.f.gst{grid-column:auto}footer .cols{grid-template-columns:1fr}.floatwa span{display:none}section.s{padding:60px 0}}
+</style>
+<title>Satu Koneksi Hotel: Booking &amp; Reservasi Hotel Indonesia, Asia</title>
+<meta name="description" content="Spesialis reservasi kamar multi-hotel Anda - pilihan kamar terbaik dari jaringan hotel kami untuk Anda. Booking hotel di Indonesia. WhatsApp +62 895-3099-8988">
+<meta name="keywords" content="pesan kamar hotel, reservasi hotel online, booking hotel online, pesan hotel lewat WhatsApp, spesialis reservasi hotel, kamar hotel murah, harga hotel terbaik, bandingkan harga hotel, promo hotel, hotel last minute, hotel budget, hotel mewah, hotel bintang 5, hotel keluarga, booking resor, sewa vila, resor pantai, hotel bulan madu, hotel di Indonesia, hotel Asia Tenggara, hotel di Bali, hotel murah di Bali, hotel di Nusa Dua, hotel di Jakarta, staycation Jakarta, hotel di Yogyakarta, hotel di Jogja, hotel di Lombok, hotel di Bandung, hotel di Surabaya, hotel di Malang, hotel di Semarang, hotel di Solo, hotel di Bogor, hotel di Medan, hotel di Makassar, hotel di Labuan Bajo, hotel di Batam, hotel di Singapura, hotel di Kuala Lumpur, hotel di Bangkok, hotel dekat bandara, hotel dekat bandara Soekarno-Hatta, hotel dekat bandara Bali, booking hotel perusahaan, booking hotel rombongan, hotel untuk meeting, paket wisata Bali, paket liburan Indonesia, diskon hotel, destinasi liburan, ide liburan, tujuan wisata, liburan ke kota, liburan akhir pekan, inspirasi traveling, tempat menginap, penginapan, hotel per kota, hotel staycation, paket liburan, liburan keluarga, paket bulan madu, paket wisata, hotel perjalanan dinas, panduan wisata, tips traveling, visa untuk wisatawan, acara bulan ini, kalender libur 2026, kalender libur 2027, ASEAN hotels, Asia hotel booking, tour packages, booking hotel, reservasi hotel, hotel murah, agen perjalanan, cari hotel, booking hotel murah, penginapan murah, Satu Koneksi Hotel">
+<link rel="canonical" href="https://www.satukoneksihotel.com/id">
+<link rel="icon" type="image/png" href="/assets/icon-512.png">
+<link rel="apple-touch-icon" href="/assets/icon-512.png">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#0e494a">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Satu Koneksi Hotel">
+<meta property="og:title" content="Satu Koneksi Hotel: Booking &amp; Reservasi Hotel Indonesia, Asia"><meta property="og:description" content="Spesialis reservasi kamar multi-hotel Anda - pilihan kamar terbaik dari jaringan hotel kami untuk Anda. Booking hotel di Indonesia. WhatsApp +62 895-3099-8988">
+<meta property="og:url" content="https://www.satukoneksihotel.com/id"><meta property="og:image" content="https://www.satukoneksihotel.com/assets/share.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://firestore.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://www.gstatic.com" crossorigin>
+<link rel="alternate" hreflang="en" href="https://www.satukoneksihotel.com/">
+<link rel="alternate" hreflang="id" href="https://www.satukoneksihotel.com/id">
+<link rel="alternate" hreflang="zh-Hans" href="https://www.satukoneksihotel.com/zh">
+<link rel="alternate" hreflang="zh-Hant" href="https://www.satukoneksihotel.com/zh-hk">
+<link rel="alternate" hreflang="ms" href="https://www.satukoneksihotel.com/ms">
+<link rel="alternate" hreflang="th" href="https://www.satukoneksihotel.com/th">
+<link rel="alternate" hreflang="ja" href="https://www.satukoneksihotel.com/ja">
+<link rel="alternate" hreflang="ko" href="https://www.satukoneksihotel.com/ko">
+<link rel="alternate" hreflang="vi" href="https://www.satukoneksihotel.com/vi">
+<link rel="alternate" hreflang="x-default" href="https://www.satukoneksihotel.com/">
+<meta property="og:locale" content="id_ID"><meta property="og:locale:alternate" content="en_US">
+<script>try{localStorage.setItem("okLang","id")}catch(e){}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "TravelAgency", "@id": "https://www.satukoneksihotel.com/#org", "name": "Satu Koneksi Hotel", "url": "https://www.satukoneksihotel.com/", "logo": "https://www.satukoneksihotel.com/assets/icon-512.png", "legalName": "PT Satu Koneksi Hotel", "identifier": {"@type": "PropertyValue", "propertyID": "NIB", "value": "2710260118389"}, "image": "https://www.satukoneksihotel.com/assets/share.jpg", "telephone": "+6289530998988", "sameAs": ["https://www.instagram.com/satukoneksihotel/", "https://www.facebook.com/profile.php?id=61594842195099"], "priceRange": "$$", "description": "Kami spesialis reservasi kamar multi-hotel Anda—mengkurasi pilihan kamar terbaik dari jaringan hotel kami dan menghadirkannya untuk Anda.", "slogan": "We’re your multi-hotel room reservation specialist—curating the best room options across our hotel network and bringing them to you.", "areaServed": ["Indonesia", "Malaysia", "Singapore", "Thailand", "Vietnam", "Philippines", "China", "Hong Kong", "Taiwan", "Japan", "South Korea", "Southeast Asia", "Asia", "Worldwide"], "availableLanguage": ["English", "Indonesian"], "address": {"@type": "PostalAddress", "addressCountry": "ID"}, "contactPoint": {"@type": "ContactPoint", "telephone": "+6289530998988", "contactType": "reservations", "url": "https://wa.me/6289530998988", "availableLanguage": ["English", "Indonesian"]}}, {"@type": "WebSite", "@id": "https://www.satukoneksihotel.com/#website", "url": "https://www.satukoneksihotel.com/", "name": "Satu Koneksi Hotel", "alternateName": "Satu Koneksi", "description": "Kami spesialis reservasi kamar multi-hotel Anda—mengkurasi pilihan kamar terbaik dari jaringan hotel kami dan menghadirkannya untuk Anda.", "inLanguage": ["en", "id", "zh-Hans", "zh-Hant", "ms", "th", "ja", "ko", "vi"], "publisher": {"@id": "https://www.satukoneksihotel.com/#org"}, "potentialAction": {"@type": "SearchAction", "target": {"@type": "EntryPoint", "urlTemplate": "https://www.satukoneksihotel.com/hotel-directory?q={search_term_string}"}, "query-input": "required name=search_term_string"}}, {"@type": "WebPage", "@id": "https://www.satukoneksihotel.com/id#page", "url": "https://www.satukoneksihotel.com/id", "name": "Satu Koneksi Hotel: Booking & Reservasi Hotel Indonesia, Asia", "description": "Spesialis reservasi kamar multi-hotel Anda - pilihan kamar terbaik dari jaringan hotel kami untuk Anda. Booking hotel di Indonesia. WhatsApp +62 895-3099-8988", "inLanguage": "id", "isPartOf": {"@id": "https://www.satukoneksihotel.com/#website"}, "about": {"@id": "https://www.satukoneksihotel.com/#org"}}]}</script>
+<link rel="preload" href="/assets/fonts/plus-jakarta-sans-normal-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/assets/fonts/playfair-display-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+<style>@font-face {font-family: 'Playfair Display';font-style: italic;font-weight: 400 900;font-display: swap;src: url(/assets/fonts/playfair-display-italic-latin-ext.woff2) format('woff2');unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;}@font-face {font-family: 'Playfair Display';font-style: italic;font-weight: 400 900;font-display: swap;src: url(/assets/fonts/playfair-display-italic-latin.woff2) format('woff2');unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}@font-face {font-family: 'Playfair Display';font-style: normal;font-weight: 400 900;font-display: swap;src: url(/assets/fonts/playfair-display-normal-latin-ext.woff2) format('woff2');unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;}@font-face {font-family: 'Playfair Display';font-style: normal;font-weight: 400 900;font-display: swap;src: url(/assets/fonts/playfair-display-normal-latin.woff2) format('woff2');unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}@font-face {font-family: 'Plus Jakarta Sans';font-style: normal;font-weight: 200 800;font-display: swap;src: url(/assets/fonts/plus-jakarta-sans-normal-latin-ext.woff2) format('woff2');unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;}@font-face {font-family: 'Plus Jakarta Sans';font-style: normal;font-weight: 200 800;font-display: swap;src: url(/assets/fonts/plus-jakarta-sans-normal-latin.woff2) format('woff2');unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}@font-face{font-family:'Plus Jakarta Sans Fallback';src:local('Arial'),local('Helvetica');size-adjust:107.16%;ascent-override:96.87%;descent-override:20.72%;line-gap-override:0%}@font-face{font-family:'Playfair Display Fallback';src:local('Times New Roman'),local('Times');size-adjust:114.28%;ascent-override:94.68%;descent-override:21.96%;line-gap-override:0%}</style>
+<link rel="preload" as="image" href="/assets/img/hero.webp" imagesrcset="/assets/img/hero-960.webp 960w, /assets/img/hero.webp 1920w" imagesizes="100vw" fetchpriority="high">
+<script type="application/ld+json" id="sk-date">{"@context": "https://schema.org", "@type": "WebPage", "@id": "https://www.satukoneksihotel.com/id#page", "url": "https://www.satukoneksihotel.com/id", "dateModified": "2026-11-18", "isPartOf": {"@type": "WebSite", "name": "Satu Koneksi Hotel", "url": "https://www.satukoneksihotel.com/"}, "publisher": {"@type": "Organization", "name": "PT Satu Koneksi Hotel", "url": "https://www.satukoneksihotel.com/"}}</script>
+</head>
+<body>
+<style>
+#skNav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.97);backdrop-filter:saturate(1.4) blur(6px);border-bottom:1px solid #e9e6e1;font-family:'Plus Jakarta Sans','Plus Jakarta Sans Fallback',system-ui,sans-serif}
+#skNav .in{max-width:1280px;margin:0 auto;padding:10px 24px;display:flex;align-items:center;gap:22px;min-height:72px}
+#skNav .logo img{display:block;height:48px;width:auto}
+#skNav .menu{display:flex;align-items:center;gap:2px;margin:0 auto}
+#skNav .menu>a,#skNav .more>summary{color:#1e3a3a;text-decoration:none;font-size:15px;font-weight:600;padding:10px 12px;border-radius:10px;white-space:nowrap;cursor:pointer;list-style:none;position:relative}
+#skNav details.more{background:none;border:0;border-radius:0;padding:0;margin:0}#skNav .more>summary{display:block;justify-content:normal}#skNav .more>summary::after{content:none}#skNav .more>summary::-webkit-details-marker{display:none}
+#skNav .menu>a:hover,#skNav .more>summary:hover{color:#b38d40;background:#f7f4ee}
+#skNav .menu>a.on,#skNav .more.on>summary{color:#0e494a}
+#skNav .menu>a.on:after,#skNav .more.on>summary:before{content:"";position:absolute;left:12px;right:12px;bottom:3px;height:2px;border-radius:2px;background:#b38d40}
+#skNav .more>summary{color:#8a6a2a;background:#fbf5e6;border:1.5px solid #d9bf86;border-radius:999px;padding:8px 14px;margin:0 6px;display:flex;align-items:center;gap:6px}
+#skNav .more>summary:hover,#skNav .more[open]>summary{background:#b38d40;border-color:#b38d40;color:#fff}
+#skNav .more.on>summary{background:#0e494a;border-color:#0e494a;color:#fff}#skNav .more.on>summary:before{content:none}#skNav .more>summary .cmp{flex:none}
+#skNav .more{position:relative}#skNav .more>summary .car{display:inline-block;margin-left:5px;font-size:10px;transition:transform .15s}#skNav .more[open]>summary .car{transform:rotate(180deg)}
+#skNav .dd{position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%);min-width:220px;background:#fff;border:1px solid #e9e6e1;border-radius:14px;box-shadow:0 14px 40px rgba(14,73,74,.14);padding:8px;display:grid;gap:2px}
+#skNav .dd a{color:#1e3a3a;text-decoration:none;font-size:14.5px;font-weight:600;padding:10px 12px;border-radius:9px;white-space:nowrap}#skNav .dd a:hover,#skNav .dd a.on{background:#f7f4ee;color:#b38d40}
+#skNav .tools{display:flex;align-items:center;gap:12px}
+#skNav .lg{display:flex;background:#f1efeb;border-radius:999px;padding:3px}
+#skNav .lg button{border:0;background:transparent;color:#1e3a3a;font:700 12px 'Plus Jakarta Sans','Plus Jakarta Sans Fallback',sans-serif;padding:6px 10px;border-radius:999px;cursor:pointer}
+#skNav .lg button.on{background:#0e494a;color:#fff}
+#skNav .acct{color:#1e3a3a;text-decoration:none;font:700 14px 'Plus Jakarta Sans','Plus Jakarta Sans Fallback',sans-serif;padding:8px 6px;white-space:nowrap;max-width:130px;overflow:hidden;text-overflow:ellipsis;display:flex;align-items:center;gap:6px}
+#skNav .acct:hover{color:#b38d40}#skNav .acct svg{flex:none}
+#skNav .cta{background:#b38d40;color:#fff;text-decoration:none;font:700 14px 'Plus Jakarta Sans','Plus Jakarta Sans Fallback',sans-serif;padding:10px 18px;border-radius:999px;white-space:nowrap;box-shadow:0 6px 16px rgba(179,141,64,.28)}
+#skNav .cta:hover{background:#9c7a33}#skNav .cta.on{outline:2px solid #0e494a;outline-offset:2px}
+#skNav .about{color:#1e3a3a;text-decoration:none;font:600 15px 'Plus Jakarta Sans','Plus Jakarta Sans Fallback',sans-serif;padding:8px 2px;white-space:nowrap;border-bottom:2px solid transparent}
+#skNav .about:hover{color:#b38d40}#skNav .about.on{color:#0e494a;border-bottom-color:#b38d40}#skNav .menu>a.about-m{display:none}
+@media(max-width:1180px){#skNav .in{gap:14px;padding:10px 18px}#skNav .menu>a,#skNav .more>summary{font-size:14px;padding:9px 9px}#skNav .acct span{display:none}#skNav .about{font-size:14px}}
+@media(max-width:960px){#skNav .in{flex-wrap:wrap;gap:8px 12px;padding:8px 14px;min-height:0}#skNav .logo img{height:42px}#skNav .tools{margin-left:auto;gap:8px}
+#skNav .cta{padding:8px 14px;font-size:13px}#skNav .tools .about{display:none}#skNav .menu>a.about-m{display:block}
+#skNav .menu{order:3;width:100%;margin:0 -14px;padding:2px 10px 4px;justify-content:flex-start;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;border-top:1px solid #f1efeb}
+#skNav .menu::-webkit-scrollbar{display:none}#skNav .menu>a,#skNav .more>summary{font-size:14px;padding:9px 10px}
+#skNav .more>summary{padding:7px 12px;margin:0 4px}#skNav .more{position:static;order:-1}#skNav .dd{left:auto;right:12px;transform:none;top:auto;margin-top:6px}#skNav>.dd{top:100%}}
+@media(max-width:520px){#skNav .logo img{height:34px}#skNav .tools{gap:6px}#skNav .lg button{padding:5px 8px;font-size:11px}#skNav .acct{padding:6px 2px}
+#skNav .cta{padding:7px 12px;font-size:12.5px;box-shadow:none}}
+</style><nav id="skNav" aria-label="Main"><div class="in"><a class="logo" href="/id" aria-label="Satu Koneksi Hotel home"><img src="/assets/logo.svg" alt="Satu Koneksi Hotel - Multi-Hotel Room Specialist" width="170" height="52"></a><div class="menu"><a href="/id/hotel-directory" data-id="Hotel">Hotel</a><a href="/id/tour-packages" data-id="Paket Tur">Paket Tur</a><a href="/id/special-offers-promos" data-id="Promo">Promo</a><a href="/id/corporate" data-id="Korporat">Korporat</a><details class="more"><summary><svg class="cmp" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M15.8 8.2l-2.1 5.5-5.5 2.1 2.1-5.5z"/></svg><span data-id="Jelajahi">Jelajahi</span><span class="car">▾</span></summary><div class="dd"><a href="/id/destinations" data-id="Destinasi">Destinasi</a><a href="/id/travel-info" data-id="Info Perjalanan">Info Perjalanan</a><a href="/id/events" data-id="Acara">Acara</a></div></details><a href="/id/how-it-works" data-id="Cara kerja">Cara kerja</a><a class="about-m" href="/id/about-us" data-id="Tentang Kami">Tentang Kami</a></div><div class="tools"><div class="lg" role="group" aria-label="Language"><button type="button" data-lang="en">EN</button><button type="button" data-lang="id">ID</button></div><a class="acct" href="/id/account" aria-label="Account"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg><span id="skAcctTxt" data-id="Masuk">Masuk</span></a><a class="cta" href="/id/book-now" data-id="Pesan sekarang">Pesan sekarang</a><a class="about" href="/id/about-us" data-id="Tentang Kami">Tentang Kami</a></div></div></nav><script>document.addEventListener('click',function(e){var d=document.querySelectorAll('#skNav details[open]');for(var i=0;i<d.length;i++){if(!d[i].contains(e.target))d[i].removeAttribute('open')}});(function(){var n=document.getElementById('skNav'),m=n&&n.querySelector('details.more'),l=m&&m.querySelector('.dd');if(!l)return;m.addEventListener('toggle',function(){if(m.open&&matchMedia('(max-width:960px)').matches)n.appendChild(l);else m.appendChild(l)})})();</script>
+<header class="hero" id="top">
+  <img class="bg" src="/assets/img/hero.webp" srcset="/assets/img/hero-960.webp 960w, /assets/img/hero.webp 1920w" sizes="100vw" alt="" fetchpriority="high" decoding="async" width="1920" height="1080">
+  <div class="wrap"><div class="in">
+    <div class="eyebrow" data-id="DIPILIH OLEH SATU KONEKSI">DIPILIH OLEH SATU KONEKSI</div>
+    <h1><span data-id="Hotel di Indonesia &amp; Asia,">Hotel di Indonesia & Asia,</span> <em data-id="dipesan dalam satu chat WhatsApp">dipesan dalam satu chat WhatsApp</em></h1>
+    <div class="heroqr"><img src="/assets/img/qr-website.svg" width="164" height="164" alt="QR code for www.satukoneksihotel.com"><b data-id="Pindai untuk membuka situs kami">Pindai untuk membuka situs kami</b><small>www.satukoneksihotel.com</small></div>
+    <p class="lead" id="heroLead" data-id="Kami spesialis reservasi kamar multi-hotel Anda—mengkurasi pilihan kamar terbaik dari jaringan hotel kami dan menghadirkannya untuk Anda. Ceritakan ke mana dan kapan, lalu pesan lewat satu chat WhatsApp.">Kami spesialis reservasi kamar multi-hotel Anda—mengkurasi pilihan kamar terbaik dari jaringan hotel kami dan menghadirkannya untuk Anda. Ceritakan ke mana dan kapan, lalu pesan lewat satu chat WhatsApp.</p>
+    <div class="cta"><a class="btn btn-gold" href="#search" data-id="Cari hotel">Cari hotel</a><a class="btn btn-line" href="/id/special-offers-promos" data-id="Lihat penawaran">Lihat penawaran</a><a class="herowa" href="https://wa.me/6289530998988" target="_blank" rel="noopener"><img src="/assets/img/qr-whatsapp.svg" width="123" height="123" alt="QR code to chat with us on WhatsApp"><b data-id="Pindai atau ketuk untuk chat WhatsApp">Pindai atau ketuk untuk chat WhatsApp</b></a></div>
+    <nav class="hexp" aria-label="Explore">
+      <span class="hexp-h" data-id="JELAJAHI">JELAJAHI</span>
+      <a class="hx" href="/id/destinations"><img src="/assets/img/dest-labuanbajo-420.webp" width="420" height="269" alt="" loading="lazy" decoding="async"><span><b data-id="Destinasi">Destinasi</b><small data-id="Tempat terbaik di 82 negara">Tempat terbaik di 82 negara</small></span></a>
+      <a class="hx" href="/id/travel-info"><img src="/assets/img/dest-jakarta-420.webp" width="420" height="420" alt="" loading="lazy" decoding="async"><span><b data-id="Info Perjalanan">Info Perjalanan</b><small data-id="Visa, kartu kedatangan, keamanan">Visa, kartu kedatangan, keamanan</small></span></a>
+      <a class="hx" href="/id/events"><img src="/assets/img/dest-yogyakarta-420.webp" width="420" height="234" alt="" loading="lazy" decoding="async"><span><b data-id="Acara">Acara</b><small data-id="Festival, balapan, pameran">Festival, balapan, pameran</small></span></a>
+    </nav>
+  </div></div>
+</header>
+
+<div class="searchwrap" id="search"><div class="wrap">
+  <form class="scard" id="sform" autocomplete="off">
+    <div class="fields">
+      <div class="f dst"><label for="dest" data-id="Mau ke mana?">Mau ke mana?</label>
+        <input id="dest" placeholder="Bali, Jakarta, Labuan Bajo…" required role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="ac">
+        <div class="ac" id="ac" role="listbox" hidden></div><div class="pickinfo" id="pickinfo"></div></div>
+      <div class="f"><label for="cin" data-id="Check-in">Check-in</label><input id="cin" type="date"></div>
+      <div class="f"><label for="cout" data-id="Check-out">Check-out</label><input id="cout" type="date"></div>
+      <div class="f gst"><label for="gbtn" data-id="Tamu">Tamu</label>
+        <button type="button" class="gbtn" id="gbtn" aria-expanded="false" aria-controls="gpop">2 adults · 1 room</button>
+        <div class="gpop" id="gpop" hidden>
+          <label><span data-id="Dewasa">Dewasa</span><select id="ad"></select></label>
+          <label><span data-id="Anak">Anak</span><select id="ch"></select></label>
+          <label><span data-id="Kamar">Kamar</span><select id="rm"></select></label>
+          <button type="button" class="gdone" id="gdone" data-id="Selesai">Selesai</button></div></div>
+      <button class="btn btn-wa searchbtn" type="submit"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 3.5A11.8 11.8 0 0 0 .2 11.8c0 2.1.6 4.2 1.6 6L0 24l6.4-1.7a11.9 11.9 0 0 0 5.6 1.4h.1A11.8 11.8 0 0 0 20.5 3.5zM12 21.5a9.8 9.8 0 0 1-5-1.4l-.4-.2-3.8 1 1-3.7-.2-.4a9.8 9.8 0 1 1 8.4 4.7zm5.4-7.3c-.3-.1-1.7-.8-2-.9s-.5-.1-.7.1-.8.9-.9 1.1-.3.2-.6.1a8 8 0 0 1-4-3.5c-.3-.5.3-.5.8-1.5.1-.2 0-.4 0-.5l-.9-2.1c-.2-.6-.5-.5-.7-.5h-.6a1.2 1.2 0 0 0-.9.4 3.7 3.7 0 0 0-1.1 2.7 6.4 6.4 0 0 0 1.3 3.4 14.6 14.6 0 0 0 5.6 4.9c2 .8 2.8.9 3.8.7a3.2 3.2 0 0 0 2.1-1.5 2.6 2.6 0 0 0 .2-1.5c-.1-.1-.3-.2-.6-.3z"/></svg><span data-id="Cari lewat WhatsApp">Cari lewat WhatsApp</span></button>
+    </div>
+    <p class="hint"><span data-id="Kami membuka WhatsApp dengan pesan yang sudah terisi — kirim, dan tim kami membalas dengan pilihan hotel.">Kami membuka WhatsApp dengan pesan yang sudah terisi — kirim, dan tim kami membalas dengan pilihan hotel.</span> <span id="nights"></span></p>
+    <div class="hmap" id="gmap" hidden><div class="gh"><b id="gmapT"></b><a id="gmapL" href="#" target="_blank" rel="noopener"></a></div><div id="gmapF"></div><p class="gn" id="gmapN"></p></div>
+  </form>
+
+  <div class="strip">
+    <div><span class="ic">✨</span><p><b data-id="Kami pilihkan untuk Anda">Kami pilihkan untuk Anda</b><span class="t" data-id="Banyak hotel, satu jawaban yang jelas.">Banyak hotel, satu jawaban yang jelas.</span></p></div>
+    <div><span class="ic">💬</span><p><b data-id="Satu chat WhatsApp">Satu chat WhatsApp</b><span class="t" data-id="Dari pencarian sampai konfirmasi.">Dari pencarian sampai konfirmasi.</span></p></div>
+    <div><span class="ic">🌏</span><p><b data-id="Indonesia · ASEAN · Dunia">Indonesia · ASEAN · Dunia</b><span class="t" data-id="Sebut kotanya, kami carikan.">Sebut kotanya, kami carikan.</span></p></div>
+    <div><span class="ic">🗣️</span><p><b data-id="Bahasa Indonesia &amp; English">Bahasa Indonesia & English</b><span class="t" data-id="Layanan dalam dua bahasa.">Layanan dalam dua bahasa.</span></p></div>
+  </div>
+</div></div>
+
+<style>.paths{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}.paths .pth{display:flex;flex-direction:column;gap:8px;background:#fff;border:1.5px solid var(--line);border-radius:18px;padding:20px 22px;text-decoration:none;color:inherit;transition:border-color .15s,transform .15s}
+.paths .pth:hover{border-color:var(--gold);transform:translateY(-2px)}.paths .pth b.k{font:800 11px 'Plus Jakarta Sans','Plus Jakarta Sans Fallback';letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}.paths .pth h3{margin:0;font-size:22px}
+.paths .pth ul{margin:0;padding-left:18px;color:var(--mute)}.paths .pth .go{margin-top:auto;font-weight:800;color:var(--teal2)}</style>
+<section class="s" style="padding-bottom:0"><div class="wrap"><nav class="journey" aria-label="Your travel companion: plan the whole trip in 5 steps"><p class="js-h" data-id="Teman perjalanan Anda: rencanakan seluruh perjalanan dalam 5 langkah">Teman perjalanan Anda: rencanakan seluruh perjalanan dalam 5 langkah</p><ol><li><a href="/id/destinations"><span class="js-n">1</span><span class="js-ic" aria-hidden="true">🗺️</span><b data-id="Mau ke mana">Mau ke mana</b><small data-id="Destinasi">Destinasi</small></a></li><li><a href="/id/events"><span class="js-n">2</span><span class="js-ic" aria-hidden="true">📅</span><b data-id="Kapan pergi">Kapan pergi</b><small data-id="Acara">Acara</small></a></li><li><a href="/id/travel-info"><span class="js-n">3</span><span class="js-ic" aria-hidden="true">📘</span><b data-id="Persiapan">Persiapan</b><small data-id="Info Perjalanan">Info Perjalanan</small></a></li><li><a href="/id/hotels"><span class="js-n">4</span><span class="js-ic" aria-hidden="true">🏨</span><b data-id="Menginap di mana">Menginap di mana</b><small data-id="Bandingkan hotel">Bandingkan hotel</small></a></li><li><a href="/id/book-now?kind=hotel"><span class="js-n">5</span><span class="js-ic" aria-hidden="true">✅</span><b data-id="Pesan">Pesan</b><small data-id="Penawaran &amp; konfirmasi via WhatsApp">Penawaran & konfirmasi via WhatsApp</small></a></li></ol></nav></div></section>
+<section class="s" id="paths" style="padding-bottom:0"><div class="wrap"><div class="paths">
+  <a class="pth" href="/id/book-now"><b class="k" data-id="Untuk wisatawan &amp; keluarga">Untuk wisatawan & keluarga</b><h3 data-id="Cari hotel untuk perjalanan Anda">Cari hotel untuk perjalanan Anda</h3>
+    <ul><li data-id="Ceritakan tanggal, jumlah tamu, dan anggaran Anda">Ceritakan tanggal, jumlah tamu, dan anggaran Anda</li><li data-id="Kami bandingkan hotel yang cocok untuk Anda">Kami bandingkan hotel yang cocok untuk Anda</li><li data-id="Anda menerima pilihan dan penawaran harga total">Anda menerima pilihan dan penawaran harga total</li></ul>
+    <span class="go" data-id="Dapatkan pilihan hotel saya →">Dapatkan pilihan hotel saya →</span></a>
+  <a class="pth" href="/id/corporate"><b class="k" data-id="Untuk perusahaan &amp; grup">Untuk perusahaan & grup</b><h3 data-id="Meja hotel korporat">Meja hotel korporat</h3>
+    <ul><li data-id="Perjalanan staf, tamu, dan tim proyek">Perjalanan staf, tamu, dan tim proyek</li><li data-id="Grup hingga 200 kamar, dengan daftar kamar (rooming list)">Grup hingga 200 kamar, dengan daftar kamar (rooming list)</li><li data-id="Satu kontak untuk penawaran dan perubahan">Satu kontak untuk penawaran dan perubahan</li></ul>
+    <span class="go" data-id="Minta penawaran korporat →">Minta penawaran korporat →</span></a>
+</div></div></section>
+
+<style>.trustgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}.trustgrid .tb{background:#fff;border:1.5px solid var(--line);border-radius:16px;padding:16px 18px}
+.trustgrid .tb b{display:block;font:800 11px 'Plus Jakarta Sans','Plus Jakarta Sans Fallback';letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:6px}.trustgrid blockquote{margin:0 0 6px;font-style:italic}.trustgrid small{color:var(--mute)}</style>
+<section class="s" id="trust" hidden style="padding-top:10px;padding-bottom:0"><div class="wrap"><div class="trustgrid" id="trustGrid"></div></div></section>
+
+<section class="s" id="destinations"><div class="wrap">
+  <div class="head"><div><div class="kicker" data-id="Destinasi populer">Destinasi populer</div><h2 data-id="Mau menginap di mana?">Mau menginap di mana?</h2><p data-id="Pilih kota — kami isi kolom pencarian untuk Anda.">Pilih kota — kami isi kolom pencarian untuk Anda.</p></div></div>
+  <div class="dest" id="destGrid">
+    <button class="d big" data-city="Labuan Bajo"><img loading="lazy" src="/assets/img/dest-labuanbajo.webp" srcset="/assets/img/dest-labuanbajo-420.webp 420w, /assets/img/dest-labuanbajo.webp 900w" sizes="(max-width:640px) 100vw, 50vw" decoding="async" alt="" width="900" height="576"><span class="pin" data-id="Gambar ilustrasi">Gambar ilustrasi</span><span class="tx"><h3>Labuan Bajo</h3><small data-id="Komodo, Padar, laut biru">Komodo, Padar, laut biru</small></span></button>
+    <button class="d" data-city="Bali"><img loading="lazy" src="/assets/img/dest-bali.webp" srcset="/assets/img/dest-bali-420.webp 420w, /assets/img/dest-bali.webp 640w" sizes="(max-width:1020px) 50vw, 25vw" decoding="async" alt="" width="640" height="640"><span class="pin" data-id="Gambar ilustrasi">Gambar ilustrasi</span><span class="tx"><h3>Bali</h3><small data-id="Ubud, Seminyak, Uluwatu">Ubud, Seminyak, Uluwatu</small></span></button>
+    <button class="d" data-city="Jakarta"><img loading="lazy" src="/assets/img/dest-jakarta.webp" srcset="/assets/img/dest-jakarta-420.webp 420w, /assets/img/dest-jakarta.webp 640w" sizes="(max-width:1020px) 50vw, 25vw" decoding="async" alt="" width="640" height="640"><span class="pin" data-id="Gambar ilustrasi">Gambar ilustrasi</span><span class="tx"><h3>Jakarta</h3><small data-id="Bisnis &amp; kota">Bisnis & kota</small></span></button>
+    <button class="d" data-city="Yogyakarta"><img loading="lazy" src="/assets/img/dest-yogyakarta.webp" srcset="/assets/img/dest-yogyakarta-420.webp 420w, /assets/img/dest-yogyakarta.webp 900w" sizes="(max-width:1020px) 50vw, 25vw" decoding="async" alt="" width="900" height="502"><span class="pin" data-id="Gambar ilustrasi">Gambar ilustrasi</span><span class="tx"><h3>Yogyakarta</h3><small data-id="Budaya &amp; Borobudur">Budaya & Borobudur</small></span></button>
+    <button class="d" data-city="Lombok"><img loading="lazy" src="/assets/img/dest-lombok.webp" srcset="/assets/img/dest-lombok-420.webp 420w, /assets/img/dest-lombok.webp 900w" sizes="(max-width:1020px) 50vw, 25vw" decoding="async" alt="" width="900" height="502"><span class="pin" data-id="Gambar ilustrasi">Gambar ilustrasi</span><span class="tx"><h3>Lombok</h3><small data-id="Pantai &amp; Gili">Pantai & Gili</small></span></button>
+    <button class="d" data-city="Singapore"><img loading="lazy" src="/assets/img/dest-singapore.webp" srcset="/assets/img/dest-singapore-420.webp 420w, /assets/img/dest-singapore.webp 900w" sizes="(max-width:1020px) 50vw, 25vw" decoding="async" alt="" width="900" height="502"><span class="pin" data-id="Gambar ilustrasi">Gambar ilustrasi</span><span class="tx"><h3>Singapore</h3><small data-id="Teluk &amp; taman kota">Teluk & taman kota</small></span></button>
+    <button class="d" data-city="Bangkok"><img loading="lazy" src="/assets/img/dest-bangkok.webp" srcset="/assets/img/dest-bangkok-420.webp 420w, /assets/img/dest-bangkok.webp 900w" sizes="(max-width:1020px) 50vw, 25vw" decoding="async" alt="" width="900" height="502"><span class="pin" data-id="Gambar ilustrasi">Gambar ilustrasi</span><span class="tx"><h3>Bangkok</h3><small data-id="Kuliner malam &amp; kuil">Kuliner malam & kuil</small></span></button>
+    <button class="d" data-city="Kuala Lumpur"><img loading="lazy" src="/assets/img/dest-kualalumpur.webp" srcset="/assets/img/dest-kualalumpur-420.webp 420w, /assets/img/dest-kualalumpur.webp 900w" sizes="(max-width:1020px) 50vw, 25vw" decoding="async" alt="" width="900" height="502"><span class="pin" data-id="Gambar ilustrasi">Gambar ilustrasi</span><span class="tx"><h3>Kuala Lumpur</h3><small data-id="Menara kembar &amp; lampu kota">Menara kembar & lampu kota</small></span></button>
+    <button class="d" data-city="Tokyo"><img loading="lazy" src="/assets/img/dest-tokyo.webp" srcset="/assets/img/dest-tokyo-420.webp 420w, /assets/img/dest-tokyo.webp 900w" sizes="(max-width:1020px) 50vw, 25vw" decoding="async" alt="" width="900" height="502"><span class="pin" data-id="Gambar ilustrasi">Gambar ilustrasi</span><span class="tx"><h3>Tokyo</h3><small data-id="Kuil &amp; lampu kota">Kuil & lampu kota</small></span></button>
+  </div>
+</div></section>
+
+<section class="s" id="featHotels" hidden style="padding-top:0"><div class="wrap">
+  <div class="head"><div><div class="kicker" data-id="Dipilih untuk Anda">Dipilih untuk Anda</div><h2 data-id="Kamar hotel pilihan">Kamar hotel pilihan</h2></div><a class="btn btn-dark" href="/id/hotel-directory" data-id="Lihat semua hotel">Lihat semua hotel</a></div>
+  <div class="grid" id="featHotelsGrid"></div>
+</div></section>
+
+<section class="s" id="featTours" hidden style="padding-top:0"><div class="wrap">
+  <div class="head"><div><div class="kicker" data-id="Eksklusif">Eksklusif</div><h2 data-id="Paket tur eksklusif">Paket tur eksklusif</h2></div><a class="btn btn-dark" href="/id/tour-packages" data-id="Lihat semua paket tur">Lihat semua paket tur</a></div>
+  <div class="grid" id="featToursGrid"></div>
+</div></section>
+
+<section class="s" style="padding-top:0"><div class="wrap">
+  <div class="banner">
+    <div><div class="kicker" style="color:var(--gold2)" data-id="Penawaran">Penawaran</div>
+      <h2 id="bannerTitle" data-id="Cari harga terbaik minggu ini?">Cari harga terbaik minggu ini?</h2>
+      <p id="bannerText" data-id="Beri tahu tujuan dan tanggal Anda. Kami cek tarif dari banyak hotel dan mengirim yang paling pas.">Beri tahu tujuan dan tanggal Anda. Kami cek tarif dari banyak hotel dan mengirim yang paling pas.</p></div>
+    <div class="acts"><a class="btn btn-wa" id="offerwa" data-wa-en="Hello Satu Koneksi Hotel, I'd like to know this week's best hotel offers." data-wa-id="Halo Satu Koneksi Hotel, saya ingin tahu penawaran hotel terbaik minggu ini." href="#" target="_blank" rel="noopener" data-id="Tanya penawaran di WhatsApp">Tanya penawaran di WhatsApp</a><a class="btn btn-line" href="/id/special-offers-promos" data-id="Lihat halaman promo">Lihat halaman promo</a></div>
+  </div>
+</div></section>
+
+<section class="s" style="background:#f4f1ec" id="how"><div class="wrap">
+  <div class="head"><div><div class="kicker" data-id="Cara kerja">Cara kerja</div><h2 data-id="Tiga langkah, satu chat">Tiga langkah, satu chat</h2></div></div>
+  <div class="steps">
+    <div class="step"><div class="n">1</div><h3 data-id="Ceritakan rencana Anda">Ceritakan rencana Anda</h3><p data-id="Kota, tanggal, dan jumlah tamu — lewat kolom pencarian atau langsung di WhatsApp.">Kota, tanggal, dan jumlah tamu — lewat kolom pencarian atau langsung di WhatsApp.</p></div>
+    <div class="step"><div class="n">2</div><h3 data-id="Kami bandingkan hotel">Kami bandingkan hotel</h3><p data-id="Kami cek kamar dan tarif dari banyak hotel, lalu mengirim pilihan terbaik.">Kami cek kamar dan tarif dari banyak hotel, lalu mengirim pilihan terbaik.</p></div>
+    <div class="step"><div class="n">3</div><h3 data-id="Pesan dalam satu chat">Pesan dalam satu chat</h3><p data-id="Pilih hotelnya, kirim data tamu, dan kami urus konfirmasinya.">Pilih hotelnya, kirim data tamu, dan kami urus konfirmasinya.</p></div>
+  </div>
+  <p style="text-align:center;margin-top:22px"><a class="btn btn-dark" href="/id/how-it-works" data-id="Lihat setiap langkah, pembayaran &amp; pembatalan">Lihat setiap langkah, pembayaran & pembatalan</a></p>
+</div></section>
+
+<section class="s"><div class="wrap">
+  <div class="head"><div><div class="kicker" data-id="Mengapa Satu Koneksi">Mengapa Satu Koneksi</div><h2 data-id="Perjalanan yang lebih mudah">Perjalanan yang lebih mudah</h2></div></div>
+  <div class="why">
+    <div class="w"><div class="ic">🔎</div><h3 data-id="Tidak perlu membuka banyak situs">Tidak perlu membuka banyak situs</h3><p data-id="Kami membandingkan di satu tempat, Anda tinggal memilih.">Kami membandingkan di satu tempat, Anda tinggal memilih.</p></div>
+    <div class="w"><div class="ic">🤝</div><h3 data-id="Ada orang yang membantu">Ada orang yang membantu</h3><p data-id="Tanya apa saja soal kamar, lokasi, atau tanggal langsung di chat.">Tanya apa saja soal kamar, lokasi, atau tanggal langsung di chat.</p></div>
+    <div class="w"><div class="ic">📍</div><h3 data-id="Dari kota besar sampai pulau">Dari kota besar sampai pulau</h3><p data-id="Bali, Jakarta, Labuan Bajo, ASEAN, hingga kota lain di dunia.">Bali, Jakarta, Labuan Bajo, ASEAN, hingga kota lain di dunia.</p></div>
+    <div class="w"><div class="ic">🏢</div><h3 data-id="Untuk perusahaan dan rombongan">Untuk perusahaan dan rombongan</h3><p data-id="Perjalanan dinas, tim proyek, dan rombongan lewat satu kontak.">Perjalanan dinas, tim proyek, dan rombongan lewat satu kontak.</p><p><a href="/id/corporate" style="color:var(--gold);font-weight:700" data-id="Layanan Hotel Korporat →">Layanan Hotel Korporat →</a></p></div>
+  </div>
+</div></section>
+
+<style>
+.nb-cats{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 16px;padding:0;list-style:none}
+.nb-cats button{border:1.5px solid var(--line);background:#fff;border-radius:999px;padding:8px 15px;font:700 13.5px 'Plus Jakarta Sans','Plus Jakarta Sans Fallback',sans-serif;cursor:pointer;color:var(--teal)}
+.nb-cats button[aria-pressed=true]{background:var(--gold);border-color:var(--gold);color:#fff}
+.nb-cities{list-style:none;margin:0;columns:4 180px;column-gap:24px;background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px 24px}
+.nb-cities li{padding:6px 0;break-inside:avoid}
+.nb-cities li[hidden]{display:none}
+.nb-cities a{text-decoration:none;font-weight:600;color:var(--ink)}.nb-cities a:hover{color:var(--gold)}
+.nb-sub{max-width:680px;color:var(--mute);margin-top:6px}
+.nb-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
+.nb-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px 22px 24px}
+.nb-card h3{font:700 17px 'Plus Jakarta Sans','Plus Jakarta Sans Fallback',sans-serif;color:var(--teal2);margin:0 0 8px}
+.nb-card p{color:var(--mute);font-size:15px;margin:0}
+.nb-connect{background:linear-gradient(135deg,#0a2b2c,#0e494a);color:#fff}
+.nb-connect h2{color:#fff}.nb-connect .kicker{color:var(--gold2)}.nb-connect .nb-sub{color:#ffffffd6}
+.nb-cgrid{display:grid;grid-template-columns:1.6fr 1fr;gap:28px;align-items:start}
+.nb-form{background:#fff;color:var(--ink);border-radius:18px;padding:24px;display:grid;grid-template-columns:1fr 1fr;gap:14px;position:relative}
+.nb-form label{display:grid;gap:6px;font-size:14px;font-weight:700}
+.nb-form .full{grid-column:1/-1}
+.nb-form input,.nb-form select,.nb-form textarea{border:1.5px solid var(--line);border-radius:11px;padding:11px 12px;background:#fff;width:100%;font:inherit;font-weight:400;color:var(--ink)}
+.nb-form input:focus,.nb-form select:focus,.nb-form textarea:focus{outline:2px solid var(--gold);border-color:var(--gold)}
+.nb-form .nb-ok{display:flex;gap:10px;align-items:flex-start;font-weight:400}
+.nb-form .nb-ok input{width:auto;margin-top:4px}
+.nb-form .nb-hp{position:absolute;left:-5000px;width:1px;height:1px;opacity:0}
+.nb-err{color:#b42318;font-weight:700;font-size:14px;margin:0;min-height:1em}
+.nb-qr{background:#ffffff14;border:1px solid #ffffff2e;border-radius:18px;padding:22px;text-align:center;text-decoration:none;color:#fff;display:block}
+.nb-qr img{width:180px;height:180px;margin:12px auto;background:#fff;border-radius:12px;padding:10px}
+.nb-qr span{color:#ffffffd6;font-size:14.5px}
+@media (max-width:860px){.nb-cgrid{grid-template-columns:1fr}}
+@media (max-width:520px){.nb-form{grid-template-columns:1fr;padding:18px}.nb-cities{columns:2;padding:16px 18px}}
+</style>
+<section class="s" id="cities"><div class="wrap">
+  <div class="head"><div><h2 data-id="Hotel per kota">Hotel per kota</h2><div class="kicker" style="margin-top:12px" data-id="Indonesia, ASEAN &amp; lainnya">Indonesia, ASEAN & lainnya</div></div></div>
+  <ul class="nb-cats" id="nbCats"><li><button type="button" aria-pressed="true" data-r="all" data-id="Semua">Semua</button></li><li><button type="button" aria-pressed="false" data-r="java" data-id="Jawa">Jawa</button></li><li><button type="button" aria-pressed="false" data-r="islands" data-id="Bali &amp; kepulauan">Bali & kepulauan</button></li><li><button type="button" aria-pressed="false" data-r="sumatra" data-id="Sumatra &amp; Kepri">Sumatra & Kepri</button></li><li><button type="button" aria-pressed="false" data-r="other" data-id="Indonesia lainnya">Indonesia lainnya</button></li><li><button type="button" aria-pressed="false" data-r="asia" data-id="Asia">Asia</button></li></ul>
+  <ul class="nb-cities" id="nbCities"><li data-r="java"><a href="/id/hotels/jakarta">Jakarta</a></li><li data-r="java"><a href="/id/hotels/bandung">Bandung</a></li><li data-r="java"><a href="/id/hotels/yogyakarta">Yogyakarta</a></li><li data-r="java"><a href="/id/hotels/surabaya">Surabaya</a></li><li data-r="java"><a href="/id/hotels/semarang">Semarang</a></li><li data-r="java"><a href="/id/hotels/malang">Malang</a></li><li data-r="java"><a href="/id/hotels/surakarta">Surakarta</a></li><li data-r="java"><a href="/id/hotels/bogor">Bogor</a></li><li data-r="java"><a href="/id/hotels/tangerang">Tangerang</a></li><li data-r="java"><a href="/id/hotels/cirebon">Cirebon</a></li><li data-r="islands"><a href="/id/hotels/kuta">Kuta</a></li><li data-r="islands"><a href="/id/hotels/lombok">Lombok</a></li><li data-r="islands"><a href="/id/hotels/labuan-bajo">Labuan Bajo</a></li><li data-r="islands"><a href="/id/hotels/legian">Legian</a></li><li data-r="islands"><a href="/id/hotels/kupang">Kupang</a></li><li data-r="islands"><a href="/id/hotels/nusa-dua">Nusa Dua</a></li><li data-r="sumatra"><a href="/id/hotels/medan">Medan</a></li><li data-r="sumatra"><a href="/id/hotels/batam">Batam</a></li><li data-r="sumatra"><a href="/id/hotels/palembang">Palembang</a></li><li data-r="sumatra"><a href="/id/hotels/pekanbaru">Pekanbaru</a></li><li data-r="sumatra"><a href="/id/hotels/bandar-lampung">Bandar Lampung</a></li><li data-r="sumatra"><a href="/id/hotels/padang">Padang</a></li><li data-r="sumatra"><a href="/id/hotels/banda-aceh">Banda Aceh</a></li><li data-r="sumatra"><a href="/id/hotels/bintan">Bintan</a></li><li data-r="sumatra"><a href="/id/hotels/jambi">Jambi</a></li><li data-r="sumatra"><a href="/id/hotels/bukittinggi">Bukittinggi</a></li><li data-r="other"><a href="/id/hotels/makassar">Makassar</a></li><li data-r="other"><a href="/id/hotels/manado">Manado</a></li><li data-r="other"><a href="/id/hotels/balikpapan">Balikpapan</a></li><li data-r="other"><a href="/id/hotels/banjarmasin">Banjarmasin</a></li><li data-r="other"><a href="/id/hotels/samarinda">Samarinda</a></li><li data-r="other"><a href="/id/hotels/jayapura">Jayapura</a></li><li data-r="other"><a href="/id/hotels/pontianak">Pontianak</a></li><li data-r="other"><a href="/id/hotels/ambon">Ambon</a></li><li data-r="asia"><a href="/id/hotels/bangkok">Bangkok</a></li><li data-r="asia"><a href="/id/hotels/chiang-mai">Chiang Mai</a></li><li data-r="asia"><a href="/id/hotels/ho-chi-minh-city">Ho Chi Minh City</a></li><li data-r="asia"><a href="/id/hotels/kuala-lumpur">Kuala Lumpur</a></li><li data-r="asia"><a href="/id/hotels/hanoi">Hanoi</a></li><li data-r="asia"><a href="/id/hotels/singapore">Singapore</a></li><li data-r="asia"><a href="/id/hotels/da-nang">Da Nang</a></li><li data-r="asia"><a href="/id/hotels/koh-samui">Koh Samui</a></li><li data-r="asia"><a href="/id/hotels/krabi">Krabi</a></li><li data-r="asia"><a href="/id/hotels/bali">Bali: 31× 5★</a></li><li data-r="asia"><a href="/id/hotels/penang">Penang</a></li><li data-r="asia"><a href="/id/hotels/cebu">Cebu</a></li><li data-r="asia"><a href="/id/hotels/hua-hin">Hua Hin</a></li><li data-r="asia"><a href="/id/hotels/nha-trang">Nha Trang</a></li><li data-r="asia"><a href="/id/hotels/phu-quoc">Phu Quoc</a></li><li data-r="asia"><a href="/id/hotels/kota-kinabalu">Kota Kinabalu</a></li><li data-r="asia"><a href="/id/hotels/langkawi">Langkawi</a></li><li data-r="asia"><a href="/id/hotels/johor-bahru">Johor Bahru</a></li><li data-r="asia"><a href="/id/hotels/manila">Manila</a></li><li data-r="asia"><a href="/id/hotels/ipoh">Ipoh</a></li><li data-r="asia"><a href="/id/hotels/kuching">Kuching</a></li><li data-r="asia"><a href="/id/hotels/phuket">Phuket</a></li><li data-r="asia"><a href="/id/hotels/siem-reap">Siem Reap</a></li><li data-r="asia"><a href="/id/hotels/malacca">Malacca</a></li><li data-r="asia"><a href="/id/hotels/pattaya">Pattaya</a></li></ul>
+</div></section>
+
+<section class="s" style="background:#f4f1ec" id="account"><div class="wrap">
+  <div class="head"><div><h2 data-id="Akun saya">Akun saya</h2><div class="kicker" style="margin-top:12px" data-id="Layanan online yang praktis">Layanan online yang praktis</div>
+    <p class="nb-sub" data-id="Tidak perlu akun untuk mengirim permintaan. Masuk jika Anda ingin memantau permintaan Anda secara online.">Tidak perlu akun untuk mengirim permintaan. Masuk jika Anda ingin memantau permintaan Anda secara online.</p></div></div>
+  <div class="nb-cards">
+    <div class="nb-card"><h3 data-id="Pantau permintaan Anda">Pantau permintaan Anda</h3><p data-id="Lihat apa yang sudah Anda kirim dan statusnya.">Lihat apa yang sudah Anda kirim dan statusnya.</p></div>
+    <div class="nb-card"><h3 data-id="Pesan lagi lebih cepat">Pesan lagi lebih cepat</h3><p data-id="Data Anda tersimpan untuk lain kali.">Data Anda tersimpan untuk lain kali.</p></div>
+    <div class="nb-card"><h3 data-id="Masuk">Masuk</h3><a class="btn btn-gold" style="margin-top:4px" href="/id/account" data-id="Buka akun saya">Buka akun saya</a></div>
+  </div>
+</div></section>
+
+<section class="s nb-connect" id="connect"><div class="wrap">
+  <div class="head"><div><h2 data-id="Mari terhubung">Mari terhubung</h2><div class="kicker" style="margin-top:12px" data-id="Ceritakan rencana Anda, dapatkan pilihan hotel">Ceritakan rencana Anda, dapatkan pilihan hotel</div>
+    <p class="nb-sub" data-id="Isi formulir ini dan WhatsApp terbuka dengan permintaan Anda yang siap dikirim. Tidak perlu akun.">Isi formulir ini dan WhatsApp terbuka dengan permintaan Anda yang siap dikirim. Tidak perlu akun.</p></div></div>
+  <div class="nb-cgrid">
+    <form class="nb-form" id="nbForm" novalidate>
+      <label><span data-id="Nama Anda">Nama Anda</span><input name="nm" autocomplete="name" maxlength="100"></label>
+      <label><span data-id="Layanan">Layanan</span><select name="kind"><option value="hotel" data-id="Kamar hotel">Kamar hotel</option><option value="tour" data-id="Paket tur">Paket tur</option><option value="corp" data-id="Korporat / rombongan">Korporat / rombongan</option></select></label>
+      <label class="full"><span data-id="Kota atau tujuan">Kota atau tujuan</span><input name="city" maxlength="80" placeholder="e.g. Bali, Jakarta, Singapore"></label>
+      <label><span>Check-in</span><input type="date" name="cin"></label>
+      <label><span>Check-out</span><input type="date" name="cout"></label>
+      <label><span data-id="Tamu">Tamu</span><select name="guests"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5+</option></select></label>
+      <label><span data-id="Kamar">Kamar</span><select name="rooms"><option selected>1</option><option>2</option><option>3</option><option>4+</option></select></label>
+      <label class="full"><span data-id="Ada lagi? (opsional)">Ada lagi? (opsional)</span><textarea name="msg" rows="3" maxlength="600"></textarea></label>
+      <input class="nb-hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <label class="full nb-ok"><input type="checkbox" name="ok"><span data-id="Saya setuju Satu Koneksi Hotel menghubungi saya tentang permintaan ini, sesuai &lt;a href=&quot;/privacy-policy&quot;&gt;Kebijakan Privasi&lt;/a&gt;.">Saya setuju Satu Koneksi Hotel menghubungi saya tentang permintaan ini, sesuai <a href="/id/privacy-policy">Kebijakan Privasi</a>.</span></label>
+      <p class="nb-err full" id="nbErr" role="alert"></p>
+      <button class="btn btn-wa full" type="submit"><span data-id="Kirim permintaan saya lewat WhatsApp">Kirim permintaan saya lewat WhatsApp</span></button>
+    </form>
+    <a class="nb-qr" href="https://wa.me/6289530998988" target="_blank" rel="noopener"><b data-id="Di komputer?">Di komputer?</b>
+      <img src="/assets/img/qr-whatsapp.svg" width="180" height="180" loading="lazy" alt="QR code to chat with us on WhatsApp">
+      <span data-id="Pindai dengan ponsel Anda untuk chat dengan kami di WhatsApp.">Pindai dengan ponsel Anda untuk chat dengan kami di WhatsApp.</span></a>
+  </div>
+  <p class="nb-sub" style="margin-top:18px">📄 <a href="/id/posters" style="color:var(--gold2);font-weight:700" data-id="Unduh poster hotel per kota (cetak A4, Instagram, Facebook)">Unduh poster hotel per kota (cetak A4, Instagram, Facebook)</a></p>
+</div></section>
+<script>
+(function(){
+  var $=function(s,r){return (r||document).querySelector(s)}, $$=function(s,r){return [].slice.call((r||document).querySelectorAll(s))};
+  $$('#nbCats button').forEach(function(b){ b.addEventListener('click', function(){
+    $$('#nbCats button').forEach(function(x){ x.setAttribute('aria-pressed', x===b); });
+    var r=b.getAttribute('data-r'); $$('#nbCities li').forEach(function(li){ li.hidden = r!=='all' && li.getAttribute('data-r')!==r; });
+  }); });
+  var f=$('#nbForm'); if(!f) return; var shownAt=Date.now(), err=$('#nbErr');
+  function id(){ return (document.documentElement.lang||'en').indexOf('id')===0; }
+  f.addEventListener('submit', function(ev){
+    ev.preventDefault(); err.textContent=''; var I=id();
+    if (f.website.value || Date.now()-shownAt<3000) { err.textContent = I?'Terima kasih!':'Thank you!'; return; }
+    if (!f.nm.value.trim()) { err.textContent = I?'Tulis nama Anda.':'Please type your name.'; f.nm.focus(); return; }
+    if (!f.city.value.trim()) { err.textContent = I?'Tulis kota atau tujuan.':'Please type the city or destination.'; f.city.focus(); return; }
+    if (f.cin.value && f.cout.value && f.cout.value<=f.cin.value) { err.textContent = I?'Check-out harus setelah check-in.':'Check-out must be after check-in.'; f.cout.focus(); return; }
+    if (!f.ok.checked) { err.textContent = I?'Centang kotak persetujuan.':'Please tick the box to agree.'; return; }
+    var k=f.kind.options[f.kind.selectedIndex].text, L=I?['Halo Satu Koneksi Hotel, permintaan saya:','Nama','Layanan','Kota','Check-in','Check-out','Tamu','Kamar','Catatan']
+                                                        :['Hello Satu Koneksi Hotel, my request:','Name','Service','City','Check-in','Check-out','Guests','Rooms','Note'];
+    var t=L[0]+'\n'+L[1]+': '+f.nm.value.trim()+'\n'+L[2]+': '+k+'\n'+L[3]+': '+f.city.value.trim()+'\n'+L[4]+': '+(f.cin.value||'-')+'\n'+L[5]+': '+(f.cout.value||'-')
+         +'\n'+L[6]+': '+f.guests.value+'\n'+L[7]+': '+f.rooms.value+(f.msg.value.trim()?'\n'+L[8]+': '+f.msg.value.trim():'');
+    window.open('https://wa.me/6289530998988?text='+encodeURIComponent(t), '_blank', 'noopener');
+  });
+})();
+</script>
+
+<section class="s" style="background:#f4f1ec"><div class="wrap">
+  <div class="head" style="justify-content:center;text-align:center"><div><div class="kicker" data-id="Pertanyaan umum">Pertanyaan umum</div><h2 data-id="Pertanyaan yang sering diajukan">Pertanyaan yang sering diajukan</h2></div></div>
+  <div class="faq" id="faqList">
+    <details open><summary data-id="Bagaimana cara memesan?">Bagaimana cara memesan?</summary><p data-id="Isi kolom pencarian di atas lalu tekan 'Cari lewat WhatsApp', atau gunakan halaman Pesan Sekarang. Tim kami membalas dengan pilihan hotel dan mengurus konfirmasinya.">Isi kolom pencarian di atas lalu tekan 'Cari lewat WhatsApp', atau gunakan halaman Pesan Sekarang. Tim kami membalas dengan pilihan hotel dan mengurus konfirmasinya.</p></details>
+    <details><summary data-id="Kota apa saja yang bisa dicari?">Kota apa saja yang bisa dicari?</summary><p data-id="Indonesia, ASEAN, dan kota lain di dunia sesuai permintaan. Sebut saja kotanya.">Indonesia, ASEAN, dan kota lain di dunia sesuai permintaan. Sebut saja kotanya.</p></details>
+    <details><summary data-id="Apakah semua harga di situs ini final?">Apakah semua harga di situs ini final?</summary><p data-id="Harga hotel berubah sesuai tanggal dan ketersediaan, jadi kami selalu mengonfirmasi tarif terbaru lewat WhatsApp sebelum Anda memutuskan.">Harga hotel berubah sesuai tanggal dan ketersediaan, jadi kami selalu mengonfirmasi tarif terbaru lewat WhatsApp sebelum Anda memutuskan.</p></details>
+  </div>
+</div></section>
+
+<section class="final"><div class="wrap">
+  <h2 data-id="Siap merencanakan menginap Anda?">Siap merencanakan menginap Anda?</h2>
+  <p data-id="Kirim tujuan dan tanggal Anda — kami yang membandingkan.">Kirim tujuan dan tanggal Anda — kami yang membandingkan.</p>
+  <a class="btn btn-wa" id="finalwa" data-wa-en="Hello Satu Koneksi Hotel, I'd like to know this week's best hotel offers." data-wa-id="Halo Satu Koneksi Hotel, saya ingin tahu penawaran hotel terbaik minggu ini." href="#" target="_blank" rel="noopener"><span data-id="Chat di WhatsApp">Chat di WhatsApp</span></a>
+</div></section>
+
+<section class="popsearch" aria-labelledby="popH"><div class="wrap"><h2 id="popH" data-id="Pencarian populer">Pencarian populer</h2><h3 data-id="Kamar hotel">Kamar hotel</h3><div class="chips"><a href="/id/book-now" data-id="pesan kamar hotel">pesan kamar hotel</a><a href="/id/hotel-directory" data-id="kamar hotel murah">kamar hotel murah</a><a href="/id/hotels/bali" data-id="hotel di Bali">hotel di Bali</a><a href="/id/hotels/kuta/budget-hotels" data-id="hotel murah di Bali">hotel murah di Bali</a><a href="/id/hotels/nusa-dua" data-id="hotel di Nusa Dua">hotel di Nusa Dua</a><a href="/id/hotels/jakarta" data-id="hotel di Jakarta">hotel di Jakarta</a><a href="/id/hotels/yogyakarta" data-id="hotel di Yogyakarta">hotel di Yogyakarta</a><a href="/id/hotels/lombok" data-id="hotel di Lombok">hotel di Lombok</a></div><h3 data-id="Liburan &amp; perjalanan">Liburan & perjalanan</h3><div class="chips"><a href="/id/destinations" data-id="destinasi liburan">destinasi liburan</a><a href="/id/hotels" data-id="tempat menginap">tempat menginap</a><a href="/id/tour-packages" data-id="paket liburan">paket liburan</a><a href="/id/corporate" data-id="hotel perjalanan dinas">hotel perjalanan dinas</a></div><h3 data-id="Kota di Indonesia">Kota di Indonesia</h3><div class="chips"><a href="/id/indonesia/yogyakarta" data-id="Hotel &amp; wisata di Yogyakarta">Hotel & wisata di Yogyakarta</a><a href="/id/indonesia/bali" data-id="Hotel &amp; wisata di Bali">Hotel & wisata di Bali</a><a href="/id/indonesia/jakarta" data-id="Hotel &amp; wisata di Jakarta">Hotel & wisata di Jakarta</a><a href="/id/indonesia/bandung" data-id="Hotel &amp; wisata di Bandung">Hotel & wisata di Bandung</a><a href="/id/indonesia/surabaya" data-id="Hotel &amp; wisata di Surabaya">Hotel & wisata di Surabaya</a><a href="/id/indonesia/malang-bromo" data-id="Hotel &amp; wisata di Malang Batu &amp; Mount Bromo">Hotel & wisata di Malang Batu & Mount Bromo</a></div><h3 data-id="Negara populer">Negara populer</h3><div class="chips"><a href="/id/travel-info/festivals-events/thailand" data-id="Panduan wisata Thailand">Panduan wisata Thailand</a><a href="/id/travel-info/festivals-events/singapore" data-id="Panduan wisata Singapore">Panduan wisata Singapore</a><a href="/id/travel-info/festivals-events/malaysia" data-id="Panduan wisata Malaysia">Panduan wisata Malaysia</a><a href="/id/travel-info/festivals-events/vietnam" data-id="Panduan wisata Vietnam">Panduan wisata Vietnam</a></div><h3 data-id="Hotel, tur &amp; promo">Hotel, tur & promo</h3><div class="chips"><a href="/id/special-offers-promos" data-id="Promo hotel">Promo hotel</a><a href="/id/events" data-id="Festival &amp; acara 2026">Festival & acara 2026</a><a href="/id/travel-info/entering-indonesia" data-id="Visa ke Indonesia">Visa ke Indonesia</a><a href="/id/travel-info/indonesians-travelling-abroad" data-id="WNI ke luar negeri">WNI ke luar negeri</a></div></div></section>
+<footer><div class="wrap">
+  <div class="cols">
+    <div><a class="logo" href="/id"><img src="/assets/logo.svg" alt="Satu Koneksi Hotel" width="412" height="127" loading="lazy" decoding="async"></a><p data-id="Kami spesialis reservasi kamar multi-hotel Anda—mengkurasi pilihan kamar terbaik dari jaringan hotel kami dan menghadirkannya untuk Anda.">Kami spesialis reservasi kamar multi-hotel Anda—mengkurasi pilihan kamar terbaik dari jaringan hotel kami dan menghadirkannya untuk Anda.</p></div>
+    <div><h4 data-id="Halaman">Halaman</h4><a href="/id/hotels" data-id="Hotel per kota">Hotel per kota</a><a href="/id" data-id="Beranda">Beranda</a><a href="/id/hotel-directory" data-id="Hotel">Hotel</a><a href="/id/tour-packages" data-id="Paket Tur">Paket Tur</a><a href="/id/special-offers-promos" data-id="Promo">Promo</a><a href="/id/travel-info" data-id="Info Perjalanan">Info Perjalanan</a><a href="/id/destinations" data-id="Destinasi">Destinasi</a><a href="/id/events" data-id="Acara">Acara</a><a href="/id/book-now" data-id="Pesan">Pesan</a><a href="/id/corporate" data-id="Korporat">Korporat</a><a href="/id/about-us" data-id="Tentang Kami">Tentang Kami</a></div>
+    <div><h4 data-id="Akun &amp; hukum">Akun & hukum</h4><a href="/id/account" data-id="Akun saya">Akun saya</a><a href="/id/how-it-works" data-id="Cara kerja permintaan">Cara kerja permintaan</a><a href="/id/privacy-policy" data-id="Kebijakan Privasi">Kebijakan Privasi</a><a href="/id/site-map" data-id="Peta situs">Peta situs</a></div>
+    <div><h4 data-id="Hubungi kami">Hubungi kami</h4><a id="footwa" data-wa-en="Hello Satu Koneksi Hotel, I have a question." data-wa-id="Halo Satu Koneksi Hotel, saya ingin bertanya." href="https://wa.me/6289530998988" target="_blank" rel="noopener" style="width:max-content;max-width:100%"><img src="/assets/img/qr-whatsapp.svg" width="123" height="123" loading="lazy" alt="QR code to chat with us on WhatsApp" style="display:block;border-radius:10px;margin-bottom:8px"><span data-id="Pindai atau ketuk untuk chat WhatsApp">Pindai atau ketuk untuk chat WhatsApp</span></a>
+      <div class="soc"><a data-soc="instagram" href="https://www.instagram.com/satukoneksihotel/" target="_blank" rel="noopener" aria-label="Instagram">IG</a><a data-soc="facebook" href="https://www.facebook.com/profile.php?id=61594842195099" target="_blank" rel="noopener" aria-label="Facebook">f</a></div></div>
+  </div>
+  <div class="legal"><span>© 2026 Satu Koneksi Hotel. <span data-id="Hak cipta dilindungi.">Hak cipta dilindungi.</span> <a href="/id/about-us" style="color:inherit"><span data-id="PT Satu Koneksi Hotel, perusahaan terdaftar di Indonesia">PT Satu Koneksi Hotel, perusahaan terdaftar di Indonesia</span> (NIB 2710260118389)</a></span><span data-id="Harga adalah petunjuk; tarif terbaru dikonfirmasi lewat WhatsApp.">Harga adalah petunjuk; tarif terbaru dikonfirmasi lewat WhatsApp.</span></div>
+  <div class="legal langs">🌐 <a href="/id" hreflang="id" lang="id">Bahasa Indonesia</a> · <a href="/zh" hreflang="zh-Hans" lang="zh-Hans">简体中文</a> · <a href="/zh-hk" hreflang="zh-Hant" lang="zh-Hant">繁體中文</a> · <a href="/ms" hreflang="ms" lang="ms">Bahasa Melayu</a> · <a href="/th" hreflang="th" lang="th">ไทย</a> · <a href="/ja" hreflang="ja" lang="ja">日本語</a> · <a href="/ko" hreflang="ko" lang="ko">한국어</a> · <a href="/vi" hreflang="vi" lang="vi">Tiếng Việt</a></div>
+</div></footer>
+
+<a class="floatwa" id="floatwa" data-wa-en="Hello Satu Koneksi Hotel, I have a question." data-wa-id="Halo Satu Koneksi Hotel, saya ingin bertanya." href="#" target="_blank" rel="noopener" aria-label="WhatsApp"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 3.5A11.8 11.8 0 0 0 .2 11.8c0 2.1.6 4.2 1.6 6L0 24l6.4-1.7a11.9 11.9 0 0 0 5.6 1.4h.1A11.8 11.8 0 0 0 20.5 3.5zM12 21.5a9.8 9.8 0 0 1-5-1.4l-.4-.2-3.8 1 1-3.7-.2-.4a9.8 9.8 0 1 1 8.4 4.7z"/></svg><span>WhatsApp</span></a>
+
+
+<script>
+(function(){
+  var WA='6289530998988', LANG='en', TYPE='Hotel';
+  var $=function(s,r){return (r||document).querySelector(s)}, $$=function(s,r){return [].slice.call((r||document).querySelectorAll(s))};
+  try{ LANG=localStorage.getItem('okLang')||(navigator.language||'').toLowerCase().indexOf('id')===0?'id':'en'; }catch(e){}
+  try{ var s=localStorage.getItem('okLang'); if(s) LANG=s; }catch(e){}
+  // two-language texts: every element with data-id keeps its English text in data-en
+  $$('[data-id]').forEach(function(el){ el.setAttribute('data-en', el.innerHTML); });
+  function setLang(l){
+    LANG=l; try{localStorage.setItem('okLang',l)}catch(e){}
+    $$('[data-id]').forEach(function(el){ el.innerHTML = l==='id' ? el.getAttribute('data-id') : el.getAttribute('data-en'); });
+    $$('.langpill button').forEach(function(b){ b.classList.toggle('on', b.getAttribute('data-lang')===l) });
+    document.documentElement.lang=l;
+    $('#dest').placeholder = l==='id' ? 'Bali, Jakarta, Labuan Bajo…' : 'Bali, Jakarta, Labuan Bajo…';
+    fillSelects(); nights(); links();
+  }
+  $$('.langpill button').forEach(function(b){ b.addEventListener('click',function(){ setLang(b.getAttribute('data-lang')) }) });
+  // guest selects
+  function fillSelects(){
+    var a=$('#ad'),c=$('#ch'),r=$('#rm'), av=a.value||'2', cv=c.value||'0', rv=r.value||'1', id=LANG==='id';
+    function opts(max,start,one,many){ var h=''; for(var i=start;i<=max;i++) h+='<option value="'+i+'">'+i+' '+(i===1?one:many)+'</option>'; return h }
+    a.innerHTML=opts(12,1,id?'dewasa':'adult',id?'dewasa':'adults'); c.innerHTML=opts(8,0,id?'anak':'child',id?'anak':'children'); r.innerHTML=opts(6,1,id?'kamar':'room',id?'kamar':'rooms');
+    a.value=av; c.value=cv; r.value=rv; gsum();
+  }
+  function gsum(){
+    var id=LANG==='id', a=+$('#ad').value||2, c=+$('#ch').value||0, r=+$('#rm').value||1;
+    $('#gbtn').textContent = id ? a+' dewasa'+(c?', '+c+' anak':'')+' · '+r+' kamar'
+      : a+(a===1?' adult':' adults')+(c?', '+c+(c===1?' child':' children'):'')+' · '+r+(r===1?' room':' rooms');
+  }
+  var gb=$('#gbtn'), gp=$('#gpop');
+  function gopen(o){ gp.hidden=!o; gb.setAttribute('aria-expanded',o?'true':'false'); if(o) $('#ad').focus() }
+  gb.addEventListener('click',function(){ gopen(gp.hidden) });
+  $('#gdone').addEventListener('click',function(){ gopen(false); gb.focus() });
+  ['#ad','#ch','#rm'].forEach(function(x){ $(x).addEventListener('change',gsum) });
+  document.addEventListener('click',function(e){ if(!gp.hidden && !e.target.closest('.f.gst')) gopen(false) });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape' && !gp.hidden){ gopen(false); gb.focus() } });
+  // dates
+  var cin=$('#cin'), cout=$('#cout');
+  function iso(d){ return d.toISOString().slice(0,10) }
+  var today=new Date(); today.setHours(12); cin.min=iso(today); cout.min=iso(today);
+  function nights(){
+    var el=$('#nights'); el.textContent='';
+    if(cin.value&&cout.value){ var n=Math.round((new Date(cout.value)-new Date(cin.value))/864e5); if(n>0) el.textContent='· '+n+' '+(LANG==='id'?(n===1?'malam':'malam'):(n===1?'night':'nights')); }
+  }
+  cin.addEventListener('change',function(){ if(cin.value){ var d=new Date(cin.value); d.setDate(d.getDate()+1); cout.min=iso(d); if(!cout.value||cout.value<=cin.value) cout.value=iso(d); } nights() });
+  cout.addEventListener('change',nights);
+  function fmt(v){ if(!v) return ''; var d=new Date(v+'T12:00:00'); return d.toLocaleDateString(LANG==='id'?'id-ID':'en-GB',{day:'numeric',month:'short',year:'numeric'}) }
+  function url(text){ return 'https://wa.me/'+(window.SK_WA||WA)+'?text='+encodeURIComponent(text) }
+  function links(){
+    var plain = LANG==='id' ? 'Halo Satu Koneksi Hotel, saya ingin tahu penawaran hotel terbaik minggu ini.' : "Hello Satu Koneksi Hotel, I'd like to know this week's best hotel offers.";
+    $$('#offerwa,#finalwa,#footwa,#floatwa').forEach(function(a){ a.href=url(plain) });
+  }
+  // search -> WhatsApp message
+  $('#sform').addEventListener('submit',function(e){
+    e.preventDefault();
+    var d=$('#dest').value.trim(); if(!d){ $('#dest').focus(); return }
+    if(PICK && PICK.n===d && PICK.s && PICK.k!=='i' && PICK.k!=='k') d+=' ('+PICK.s+')';
+    var a=$('#ad').value,c=$('#ch').value,r=$('#rm').value, n=nights.call?'':'';
+    var typeId={Hotel:'Hotel',Villa:'Vila',Apartment:'Apartemen'}[TYPE];
+    var msg;
+    if(LANG==='id'){
+      msg='Halo Satu Koneksi Hotel, saya ingin opsi '+typeId.toLowerCase()+'.\nTujuan: '+d+(cin.value?'\nCheck-in: '+fmt(cin.value):'')+(cout.value?'\nCheck-out: '+fmt(cout.value):'')+'\nTamu: '+a+' dewasa'+(c>0?', '+c+' anak':'')+'\nKamar: '+r;
+    }else{
+      msg="Hello Satu Koneksi Hotel, I'd like "+TYPE.toLowerCase()+' options.\nDestination: '+d+(cin.value?'\nCheck-in: '+fmt(cin.value):'')+(cout.value?'\nCheck-out: '+fmt(cout.value):'')+'\nGuests: '+a+(a==1?' adult':' adults')+(c>0?', '+c+(c==1?' child':' children'):'')+'\nRooms: '+r;
+    }
+    window.open(url(msg),'_blank','noopener');
+  });
+  // ---- search suggestions while typing (like Trivago) - from our own lists: islands, areas, city guides, countries, places, hotels
+  var IDX=null, LOADING=null, PICK=null, SEL=-1, SHOWN=[], acT=null;
+  var ICON={i:'🏝️',a:'📍',c:'🏙️',k:'🌏',p:'📌',h:'🏨'};
+  var TX={en:{i:'Island · Indonesia',ctry:'Country',pop:'Popular destinations',dst:'Destinations',htl:'Hotels',none:'Not in our list yet - press Search and our team looks for it.',hotels:'hotels',see:'See',inn:'in',guide:'city guide',info:'Travel info for',seeh:'See this hotel on our list'},
+          id:{i:'Pulau · Indonesia',ctry:'Negara',pop:'Tujuan populer',dst:'Tujuan',htl:'Hotel',none:'Belum ada di daftar kami - tekan Cari dan tim kami mencarikannya.',hotels:'hotel',see:'Lihat',inn:'di',guide:'panduan kota',info:'Info perjalanan',seeh:'Lihat hotel ini di daftar kami'}};
+  var POP=['Bali','Jakarta','Yogyakarta','Labuan Bajo','Lombok','Bandung','Surabaya','Singapore','Kuala Lumpur','Bangkok'];
+  var ORDER={i:0,a:1,c:2,k:3,p:4,h:5};
+  var ac=$('#ac'), dest=$('#dest'), info=$('#pickinfo');
+  function norm(s){ return String(s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9 ]+/g,' ').replace(/\s+/g,' ').trim() }
+  function esc(s){ return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]}) }
+  function loadIdx(){ if(IDX) return Promise.resolve(IDX); if(!LOADING) LOADING=fetch('/data/search-index.json').then(function(r){return r.json()}).then(function(d){ IDX=d.map(function(r){ return {n:r[0],k:r[1],s:r[2],l:r[3],c:r[4]||0,x:' '+norm(r[0]),y:r[1]==='h'?' '+norm(r[2]):''} }); return IDX }).catch(function(){ IDX=[]; return IDX }); return LOADING }
+  function link(r){ return r.k==='h' ? '/hotel-directory?area='+r.l+'&q='+encodeURIComponent(r.n) : r.l }
+  function find(q){
+    var nq=norm(q), words=nq.split(' '), out=[];
+    if(!nq) return [[],[]];
+    for(var i=0;i<IDX.length;i++){ var r=IDX[i], x=r.x, sc;
+      if(x.indexOf(' '+nq)===0) sc=0; else if(x.indexOf(' '+nq)>0) sc=1; else if(words.every(function(w){return x.indexOf(' '+w)>=0})) sc=2; else if(nq.length>=3 && x.indexOf(nq)>=0) sc=3;
+      else if(r.y && nq.length>=3 && r.y.indexOf(' '+nq)>=0) sc=2;   // hotels in the area the person types (e.g. 'bandung' -> Hilton Bandung)
+      else continue;
+      if(r.k==='h' && sc<=1) sc=0.5;   // among good hotel matches the bigger (more stars) come first, like Trivago
+      out.push([sc,r]); }
+    out.sort(function(a,b){ return (a[1].k==='h'&&b[1].k==='h' ? a[0]-b[0] || (b[1].c-a[1].c) : a[0]-b[0] || ORDER[a[1].k]-ORDER[b[1].k] || (b[1].c-a[1].c)) || a[1].n.length-b[1].n.length });
+    var dst=[], htl=[];
+    out.forEach(function(o){ if(o[1].k==='h'){ if(htl.length<7 && nq.length>=2) htl.push(o[1]) } else if(dst.length<7) dst.push(o[1]) });
+    return [dst,htl];
+  }
+  function hl(name,q){ var nq=norm(q); if(!nq) return esc(name); var i=norm(name).indexOf(nq); if(i<0||norm(name).length!==name.length) return esc(name);
+    return esc(name.slice(0,i))+'<b>'+esc(name.slice(i,i+nq.length))+'</b>'+esc(name.slice(i+nq.length)) }
+  function row(r,q){ var t=TX[LANG]||TX.en;
+    var sub = r.k==='i' ? (r.s==='Country'?t.ctry:t.i)+(r.c?' · '+r.c.toLocaleString()+' '+t.hotels:'') : esc(r.s)+(r.k==='a'&&r.c?' · '+r.c+' '+t.hotels:'')+(r.k==='h'&&r.c?' <span class="st">'+'★'.repeat(r.c)+'</span>':'');
+    var h='<div class="it" role="option" data-i="'+SHOWN.length+'"><div class="ic">'+ICON[r.k]+'</div><div><div class="t">'+hl(r.n,q)+'</div><div class="s">'+sub+'</div></div></div>';
+    SHOWN.push(r); return h }
+  function render(){
+    var q=dest.value, t=TX[LANG]||TX.en, html='';
+    SHOWN=[]; SEL=-1;
+    if(!IDX) return;
+    if(!norm(q)){
+      var pop=POP.map(function(n){ var best=null; IDX.forEach(function(r){ if(r.n===n && r.k!=='h' && (!best||ORDER[r.k]<ORDER[best.k])) best=r }); return best }).filter(Boolean);
+      html+='<div class="hd">'+t.pop+'</div>'; pop.forEach(function(r){ html+=row(r,'') });
+    } else {
+      var res=find(q);
+      if(res[0].length){ html+='<div class="hd">'+t.dst+'</div>'; res[0].forEach(function(r){ html+=row(r,q) }) }
+      if(res[1].length){ html+='<div class="hd">'+t.htl+'</div>'; res[1].forEach(function(r){ html+=row(r,q) }) }
+      if(!SHOWN.length) html='<div class="em">'+t.none+'</div>';
+    }
+    ac.innerHTML=html; ac.hidden=false; dest.setAttribute('aria-expanded','true');
+  }
+  function hide(){ ac.hidden=true; dest.setAttribute('aria-expanded','false') }
+  function mark(i){ var items=$$('.it',ac); items.forEach(function(el){el.classList.remove('on')}); if(items[i]){ items[i].classList.add('on'); items[i].scrollIntoView({block:'nearest'}) } SEL=i }
+  function showInfo(){ var t=TX[LANG]||TX.en, r=PICK; if(!r||dest.value!==r.n){ info.innerHTML=''; return }
+    var txt = r.k==='h' ? t.seeh : (r.k==='i'||r.k==='a') ? t.see+' '+(r.c?r.c.toLocaleString()+' ':'')+t.hotels+' '+t.inn+' '+r.n : r.k==='c' ? r.n+' '+t.guide : t.info+' '+(r.k==='k'?r.n:r.s);
+    info.innerHTML='<a href="'+esc(link(r))+'">'+esc(txt)+' →</a>' }
+  // Google map of hotels for what the visitor typed (official Maps Embed API; without a key we show a Google Maps link only)
+  var MAPQ='';
+  function gmap(){ var box=$('#gmap'), d=dest.value.trim(); if(d.length<3){ box.hidden=true; MAPQ=''; return }
+    var id=LANG==='id', hotel=PICK&&PICK.n===d&&PICK.k==='h', q=hotel ? d+(PICK.s?', '+PICK.s:'') : (id?'hotel di ':'hotels in ')+d;
+    $('#gmapT').textContent = hotel ? d+(id?' di peta':' on the map') : (id?'Hotel di '+d+' di Google Maps':'Hotels in '+d+' on Google Maps');
+    $('#gmapL').textContent = id?'Buka di Google Maps ↗':'Open in Google Maps ↗';
+    $('#gmapL').href='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(q);
+    $('#gmapN').textContent = id?'Peta, nama dan ulasan hotel dari Google. Untuk tarif terbaik, tekan "Cari lewat WhatsApp".':'Map, hotel names and reviews by Google. For the best rate, press "Search on WhatsApp".';
+    box.hidden=false; var key=window.SK_MAPKEY||''; if(!key||q===MAPQ) return; MAPQ=q;
+    $('#gmapF').innerHTML='<iframe loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen title="Google Maps" src="https://www.google.com/maps/embed/v1/search?key='+encodeURIComponent(key)+'&q='+encodeURIComponent(q)+'&language='+(id?'id':'en')+'"></iframe>' }
+  dest.addEventListener('change',function(){ setTimeout(gmap,150) });
+  function choose(i){ var r=SHOWN[i]; if(!r) return; PICK=r; dest.value=r.n; hide(); showInfo(); gmap(); if(!cin.value) setTimeout(function(){ cin.focus(); try{cin.showPicker()}catch(e){} },60) }
+  dest.addEventListener('focus',function(){ loadIdx().then(render) });
+  dest.addEventListener('click',function(){ if(ac.hidden) loadIdx().then(render) });
+  dest.addEventListener('input',function(){ PICK=null; info.innerHTML=''; clearTimeout(acT); acT=setTimeout(function(){ loadIdx().then(render) },70) });
+  dest.addEventListener('keydown',function(e){ if(ac.hidden) return; var n=SHOWN.length;
+    if(e.key==='ArrowDown'){ e.preventDefault(); if(n) mark((SEL+1)%n) } else if(e.key==='ArrowUp'){ e.preventDefault(); if(n) mark((SEL-1+n)%n) }
+    else if(e.key==='Enter' && SEL>=0){ e.preventDefault(); choose(SEL) } else if(e.key==='Escape'){ hide() } });
+  ac.addEventListener('mousedown',function(e){ var it=e.target.closest('.it'); if(!it) return; e.preventDefault(); choose(+it.getAttribute('data-i')) });
+  dest.addEventListener('blur',function(){ setTimeout(hide,120) });
+  window.addEventListener('sk-lang',function(){ if(!ac.hidden) render(); showInfo(); if(!$('#gmap').hidden){ MAPQ=''; gmap() } });
+  // destination cards fill the search box
+  document.addEventListener('click',function(ev){ var el=ev.target.closest('[data-city]'); if(!el) return; ev.preventDefault(); $('#dest').value=el.getAttribute('data-city'); PICK=null; info.innerHTML=''; gmap(); $('#search').scrollIntoView({behavior:'smooth',block:'center'}); setTimeout(function(){ cin.focus() },500) });
+  window.addEventListener('sk-lang',function(e){ setLang(e.detail) });
+  fillSelects(); links(); setLang(LANG);
+})();
+</script>
+<script src="/assets/js/i18n.js" defer></script>
+<script type="module" src="/assets/js/site.js"></script>
+<script type="module">import { firstDraw } from "/assets/js/fastlist.js"; firstDraw("home");</script>
+<script type="module">import { run } from "/assets/js/public.js"; run("home");</script>
+<script type="speculationrules">{"prerender": [{"where": {"and": [{"href_matches": "/*"}, {"not": {"href_matches": ["/admin*", "/account*", "/book-now*", "/id/account*", "/id/book-now*", "/data/*", "/assets/*"]}}, {"not": {"selector_matches": "[target=_blank], [data-no-prerender]"}}]}, "eagerness": "moderate"}]}</script>
+</body>
+</html>

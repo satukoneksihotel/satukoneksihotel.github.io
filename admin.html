@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Staff admin - Satu Koneksi Hotel</title>
+<link rel="icon" type="image/png" href="/assets/icon-512.png">
+<link rel="stylesheet" href="/assets/fonts/fonts.css">
+<link rel="stylesheet" href="/assets/css/site.css">
+<link rel="stylesheet" href="/assets/css/admin.css">
+</head>
+<body class="adm">
+<div id="login">
+  <div class="box">
+    <img src="/assets/logo.svg" alt="Satu Koneksi Hotel">
+    <h1>Staff admin</h1>
+    <p id="loginMsg">Checking your sign-in…</p>
+    <button class="sk-btn gold" id="loginBtn" type="button" style="display:none">Sign in with Google</button>
+    <p style="margin-top:14px;font-size:13px"><a href="/" style="color:var(--gold)">← Back to the website</a></p>
+  </div>
+</div>
+<button class="menu-btn" id="menuBtn" type="button" style="display:none" aria-label="Menu">☰</button>
+<div id="shell">
+  <nav id="side" aria-label="Admin menu">
+    <div class="brand"><img src="/assets/logo.svg" alt="Satu Koneksi Hotel"><span>Staff admin</span></div>
+    <a href="#/dashboard" data-r="dashboard"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg><span class="tx">Dashboard</span></a><a href="#/visitors" data-r="visitors"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M3 20c.5-3.5 3-5.5 6-5.5s5.500 2 6 5.5"/><path d="M16 5a3.500 3.500 0 0 1 0 6.500M18 14.800c1.700.8 2.700 2.600 3 5.200"/></svg><span class="tx">Visitors</span></a><a href="#/seo" data-r="seo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 6l2 2 3-3.500"/><path d="M5 13l2 2 3-3.500"/><path d="M5 20l2 2 3-3.500"/><path d="M13 7h8M13 14h8M13 21h8"/></svg><span class="tx">SEO checklist</span></a><div class="grp">Sales</div><a href="#/requests" data-r="requests"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v12H7l-3 3z"/><path d="M8 9h8M8 12h5"/></svg><span class="tx">Requests</span> <span class="n" id="newCount"></span></a><a href="#/sales" data-r="sales"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l4-4 5 3 5-3 4 4"/><path d="M7 7l5 9 5-9"/></svg><span class="tx">Sales desk</span></a><a href="#/wareplies" data-r="wareplies"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7z"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5"/></svg><span class="tx">WhatsApp replies</span></a><a href="#/customers" data-r="customers"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.6 2.9-6.5 6.5-6.5s6.5 2.9 6.5 6.5"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M18 13.8c2 .9 3.5 3 3.5 6.2"/></svg><span class="tx">Customers</span></a><a href="#/quotes" data-r="quotes"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4"/><path d="M10 12h5M10 16h3"/></svg><span class="tx">Quotes</span></a><div class="grp">Website content</div><a href="#/hotels" data-r="hotels"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21V5l8-2v18"/><path d="M12 9h8v12"/><path d="M7 8h2M7 12h2M7 16h2M15 13h2M15 17h2"/><path d="M2 21h20"/></svg><span class="tx">Hotels</span></a><a href="#/tours" data-r="tours"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg><span class="tx">Tour packages</span></a><a href="#/offers" data-r="offers"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12V4h8l10 10-8 8z"/><circle cx="7.5" cy="8.5" r="1.5"/></svg><span class="tx">Offers</span></a><a href="#/destinations" data-r="destinations"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg><span class="tx">Destinations</span></a><a href="#/alerts" data-r="alerts"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l10 18H2z"/><path d="M12 10v5M12 18v.5"/></svg><span class="tx">Travel alerts</span></a><a href="#/reels" data-r="reels"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M10 9.5v5l4.5-2.5z"/></svg><span class="tx">Reels</span></a><a href="#/poster" data-r="poster"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="1.5"/><path d="M5 15l4-4 4 4 2-2 4 4"/><circle cx="15" cy="8" r="1.5"/></svg><span class="tx">Posters</span></a><div class="grp">Prices</div><a href="#/prices" data-r="prices"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v18"/><path d="M16.5 7.5c-.6-1.5-2.4-2.5-4.5-2.5-2.5 0-4.5 1.4-4.5 3.3 0 4.4 9 2.4 9 6.9 0 1.9-2 3.3-4.5 3.3-2.3 0-4.2-1.1-4.7-2.8"/></svg><span class="tx">Price rules</span></a><a href="#/compare" data-r="compare"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v16"/><path d="M5 8h14"/><path d="M5 8l-3 6a3 3 0 0 0 6 0z"/><path d="M19 8l-3 6a3 3 0 0 0 6 0z"/></svg><span class="tx">Compare Price</span></a><div class="grp">Robots</div><a href="#/bots" data-r="bots"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="8" width="14" height="11" rx="3"/><path d="M12 4v4"/><circle cx="9.5" cy="13" r="1"/><circle cx="14.5" cy="13" r="1"/><path d="M9.5 16.5h5"/></svg><span class="tx">Bots</span></a><a href="#/engines" data-r="engines"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/></svg><span class="tx">Engines</span></a><div class="grp">Settings</div><a href="#/settings" data-r="settings"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0"/><circle cx="16" cy="6" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="18" cy="18" r="2"/></svg><span class="tx">Page texts &amp; settings</span></a><a href="#/team" data-r="team"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M16 7l3 3M14 9l2 2"/></svg><span class="tx">Team</span></a><a href="#/backup" data-r="backup"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M4 17v3h16v-3"/></svg><span class="tx">Backup &amp; export</span></a>
+  </nav>
+  <div id="wrap">
+    <header id="top">
+      <div class="crumb"><span>Admin</span><b id="pageTitle">Dashboard</b></div>
+      <div class="who"><a class="tb" href="/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6"/><path d="M20 4l-9 9"/><path d="M18 14v6H4V6h6"/></svg><span>View website</span></a>
+        <span class="me" title="Signed in"><i id="meAv">S</i><b id="meMail"></b></span>
+        <button class="tb" id="outBtn" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 4h5v16h-5"/><path d="M10 8l-4 4 4 4"/><path d="M6 12h10"/></svg><span>Sign out</span></button></div>
+    </header>
+    <main id="main"></main>
+  </div>
+</div>
+<script type="module" src="/assets/js/admin.js"></script>
+</body>
+</html>
